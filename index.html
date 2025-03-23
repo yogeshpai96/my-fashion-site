@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>YourStyleWardrobe - Home</title>
+  <style>
+    body {
+      margin: 0; padding: 0; font-family: Arial, sans-serif; color: #333;
+      background-color: #fff;
+    }
+    header, footer {
+      width: 100%; background-color: #fff; display: flex; align-items: center;
+      justify-content: space-between; padding: 1rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    /* Logo and Nav */
+    .logo {
+      font-weight: bold; font-size: 1.2rem; display: flex; align-items: center;
+    }
+    .logo img {
+      width: 30px; margin-right: 0.5rem;
+    }
+    nav a {
+      text-decoration: none; color: #333; margin: 0 1rem; font-weight: 500;
+    }
+    nav a:hover {
+      color: #007bff;
+    }
+    /* Main content area */
+    .container {
+      max-width: 1200px; margin: 2rem auto; padding: 0 1rem;
+    }
+    .search-bar {
+      width: 100%; max-width: 600px; margin: 0 auto 2rem; display: flex;
+    }
+    .search-bar input {
+      flex: 1; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;
+    }
+    .featured-outfits, .explore-categories {
+      margin-bottom: 2rem;
+    }
+    h2 {
+      margin-bottom: 1rem; font-weight: 600;
+    }
+    .card-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background-color: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      overflow: hidden; display: flex; flex-direction: column; align-items: start;
+      padding: 1rem;
+    }
+    .card img {
+      width: 100%; height: auto; object-fit: cover; margin-bottom: 0.5rem;
+    }
+    .card h3 {
+      margin: 0.5rem 0; font-size: 1.1rem;
+    }
+    .card p {
+      font-size: 0.95rem; color: #555;
+    }
+    /* Explore Categories */
+    .categories-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1.5rem; text-align: center;
+    }
+    .category {
+      display: flex; flex-direction: column; align-items: center; cursor: pointer;
+    }
+    .category img {
+      width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    /* Footer */
+    footer {
+      margin-top: 2rem; padding: 1rem 2rem; flex-direction: row; flex-wrap: wrap;
+      justify-content: space-between; box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+    }
+    .footer-links {
+      display: flex; gap: 2rem;
+    }
+    .footer-column {
+      display: flex; flex-direction: column;
+    }
+    .footer-column h4 {
+      margin-bottom: 0.5rem; font-size: 1rem; font-weight: 600;
+    }
+    .footer-column a {
+      color: #333; margin-bottom: 0.3rem; text-decoration: none; font-size: 0.9rem;
+    }
+    .footer-column a:hover {
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="https://via.placeholder.com/30" alt="Logo">
+    YourStyleWardrobe
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="outfit-planner.html">Outfit Planner</a>
+    <a href="wardrobe.html">Wardrobe Organizer</a>
+  </nav>
+</header>
+
+<main class="container">
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input type="text" placeholder="Search for outfits, brands, or styles..." />
+  </div>
+
+  <!-- Featured Outfits -->
+  <section class="featured-outfits">
+    <h2>Featured Outfits</h2>
+    <div class="card-grid">
+      <div class="card">
+        <img src="https://via.placeholder.com/300x400?text=Summer+Vibes" alt="Summer Vibes" />
+        <h3>Summer Vibes</h3>
+        <p>A chic summer outfit with a floral dress and sun hat.</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300x400?text=Autumn+Comfort" alt="Autumn Comfort" />
+        <h3>Autumn Comfort</h3>
+        <p>A casual autumn outfit featuring a cozy sweater and jeans.</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300x400?text=Office+Elegance" alt="Office Elegance" />
+        <h3>Office Elegance</h3>
+        <p>A formal office outfit with a tailored suit and tie.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Explore Categories -->
+  <section class="explore-categories">
+    <h2>Explore Categories</h2>
+    <div class="categories-grid">
+      <div class="category">
+        <img src="https://via.placeholder.com/80?text=Casual" alt="Casual Wear" />
+        <p>Casual Wear</p>
+      </div>
+      <div class="category">
+        <img src="https://via.placeholder.com/80?text=Formal" alt="Formal Wear" />
+        <p>Formal Wear</p>
+      </div>
+      <div class="category">
+        <img src="https://via.placeholder.com/80?text=Sportswear" alt="Sportswear" />
+        <p>Sportswear</p>
+      </div>
+      <div class="category">
+        <img src="https://via.placeholder.com/80?text=Accessories" alt="Accessories" />
+        <p>Accessories</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <div class="footer-column">
+      <h4>Customer Service</h4>
+      <a href="#">Contact Us</a>
+      <a href="#">FAQ</a>
+    </div>
+    <div class="footer-column">
+      <h4>Follow Us</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+    </div>
+    <div class="footer-column">
+      <h4>About Us</h4>
+      <a href="#">Our Story</a>
+      <a href="#">Careers</a>
+    </div>
+  </div>
+  <div>&copy; 2023 YourStyleWardrobe</div>
+</footer>
+
+</body>
+</html>
