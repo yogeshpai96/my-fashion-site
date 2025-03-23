@@ -12,7 +12,7 @@
       width: 100%; background-color: #fff; display: flex; align-items: center;
       justify-content: space-between; padding: 1rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-    /* Logo and Nav */
+    /* Logo & Nav */
     .logo {
       font-weight: bold; font-size: 1.2rem; display: flex; align-items: center;
     }
@@ -25,7 +25,7 @@
     nav a:hover {
       color: #007bff;
     }
-    /* Main content area */
+    /* Container */
     .container {
       max-width: 1200px; margin: 2rem auto; padding: 0 1rem;
     }
@@ -35,6 +35,7 @@
     .search-bar input {
       flex: 1; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;
     }
+    /* Featured Outfits */
     .featured-outfits, .explore-categories {
       margin-bottom: 2rem;
     }
@@ -47,11 +48,11 @@
     }
     .card {
       background-color: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      overflow: hidden; display: flex; flex-direction: column; align-items: start;
-      padding: 1rem;
+      overflow: hidden; display: flex; flex-direction: column; padding: 1rem;
     }
     .card img {
       width: 100%; height: auto; object-fit: cover; margin-bottom: 0.5rem;
+      border-radius: 4px;
     }
     .card h3 {
       margin: 0.5rem 0; font-size: 1.1rem;
@@ -118,17 +119,26 @@
     <h2>Featured Outfits</h2>
     <div class="card-grid">
       <div class="card">
-        <img src="https://via.placeholder.com/300x400?text=Summer+Vibes" alt="Summer Vibes" />
+        <!-- Summer Vibes -->
+        <img 
+          src="https://images.pexels.com/photos/1083926/pexels-photo-1083926.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+          alt="Floral dress and sun hat" />
         <h3>Summer Vibes</h3>
         <p>A chic summer outfit with a floral dress and sun hat.</p>
       </div>
       <div class="card">
-        <img src="https://via.placeholder.com/300x400?text=Autumn+Comfort" alt="Autumn Comfort" />
+        <!-- Autumn Comfort -->
+        <img 
+          src="https://images.pexels.com/photos/5746967/pexels-photo-5746967.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+          alt="Cozy sweater with jeans" />
         <h3>Autumn Comfort</h3>
         <p>A casual autumn outfit featuring a cozy sweater and jeans.</p>
       </div>
       <div class="card">
-        <img src="https://via.placeholder.com/300x400?text=Office+Elegance" alt="Office Elegance" />
+        <!-- Office Elegance -->
+        <img 
+          src="https://images.pexels.com/photos/4386731/pexels-photo-4386731.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+          alt="Man in a suit" />
         <h3>Office Elegance</h3>
         <p>A formal office outfit with a tailored suit and tie.</p>
       </div>
@@ -140,19 +150,27 @@
     <h2>Explore Categories</h2>
     <div class="categories-grid">
       <div class="category">
-        <img src="https://via.placeholder.com/80?text=Casual" alt="Casual Wear" />
+        <img 
+          src="https://images.pexels.com/photos/1852389/pexels-photo-1852389.jpeg?auto=compress&cs=tinysrgb&h=80&w=80"
+          alt="Casual Wear" />
         <p>Casual Wear</p>
       </div>
       <div class="category">
-        <img src="https://via.placeholder.com/80?text=Formal" alt="Formal Wear" />
+        <img 
+          src="https://images.pexels.com/photos/4629629/pexels-photo-4629629.jpeg?auto=compress&cs=tinysrgb&h=80&w=80"
+          alt="Formal Wear" />
         <p>Formal Wear</p>
       </div>
       <div class="category">
-        <img src="https://via.placeholder.com/80?text=Sportswear" alt="Sportswear" />
+        <img 
+          src="https://images.pexels.com/photos/999509/pexels-photo-999509.jpeg?auto=compress&cs=tinysrgb&h=80&w=80"
+          alt="Sportswear" />
         <p>Sportswear</p>
       </div>
       <div class="category">
-        <img src="https://via.placeholder.com/80?text=Accessories" alt="Accessories" />
+        <img 
+          src="https://images.pexels.com/photos/1197083/pexels-photo-1197083.jpeg?auto=compress&cs=tinysrgb&h=80&w=80"
+          alt="Accessories" />
         <p>Accessories</p>
       </div>
     </div>
