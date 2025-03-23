@@ -2,113 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>YourStyleWardrobe - Home</title>
-  <style>
-    body {
-      margin: 0; padding: 0; font-family: Arial, sans-serif; color: #333;
-      background-color: #fff;
-    }
-    header, footer {
-      width: 100%; background-color: #fff; display: flex; align-items: center;
-      justify-content: space-between; padding: 1rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    /* Logo & Nav */
-    .logo {
-      font-weight: bold; font-size: 1.2rem; display: flex; align-items: center;
-    }
-    .logo img {
-      width: 30px; margin-right: 0.5rem;
-    }
-    nav a {
-      text-decoration: none; color: #333; margin: 0 1rem; font-weight: 500;
-    }
-    nav a:hover {
-      color: #007bff;
-    }
-    /* Container */
-    .container {
-      max-width: 1200px; margin: 2rem auto; padding: 0 1rem;
-    }
-    .search-bar {
-      width: 100%; max-width: 600px; margin: 0 auto 2rem; display: flex;
-    }
-    .search-bar input {
-      flex: 1; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;
-    }
-    /* Featured Outfits */
-    .featured-outfits, .explore-categories {
-      margin-bottom: 2rem;
-    }
-    h2 {
-      margin-bottom: 1rem; font-weight: 600;
-    }
-    .card-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .card {
-      background-color: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      overflow: hidden; display: flex; flex-direction: column; padding: 1rem;
-    }
-    .card img {
-      width: 100%; height: auto; object-fit: cover; margin-bottom: 0.5rem;
-      border-radius: 4px;
-    }
-    .card h3 {
-      margin: 0.5rem 0; font-size: 1.1rem;
-    }
-    .card p {
-      font-size: 0.95rem; color: #555;
-    }
-    /* Explore Categories */
-    .categories-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 1.5rem; text-align: center;
-    }
-    .category {
-      display: flex; flex-direction: column; align-items: center; cursor: pointer;
-    }
-    .category img {
-      width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 0.5rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    /* Footer */
-    footer {
-      margin-top: 2rem; padding: 1rem 2rem; flex-direction: row; flex-wrap: wrap;
-      justify-content: space-between; box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
-    }
-    .footer-links {
-      display: flex; gap: 2rem;
-    }
-    .footer-column {
-      display: flex; flex-direction: column;
-    }
-    .footer-column h4 {
-      margin-bottom: 0.5rem; font-size: 1rem; font-weight: 600;
-    }
-    .footer-column a {
-      color: #333; margin-bottom: 0.3rem; text-decoration: none; font-size: 0.9rem;
-    }
-    .footer-column a:hover {
-      color: #007bff;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YourStyleWardrobe | Home</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <img src="https://via.placeholder.com/30" alt="Logo">
-    YourStyleWardrobe
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="outfit-planner.html">Outfit Planner</a>
-    <a href="wardrobe.html">Wardrobe Organizer</a>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">YourStyleWardrobe</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="outfit.html">Outfit Planner</a>
+      <a href="wardrobe.html">Wardrobe Organizer</a>
+    </div>
   </nav>
-</header>
 
-<main class="container">
   <!-- Search Bar -->
   <div class="search-bar">
     <input type="text" placeholder="Search for outfits, brands, or styles..." />
@@ -116,87 +25,103 @@
 
   <!-- Featured Outfits -->
   <section class="featured-outfits">
-    <h2>Featured Outfits</h2>
-    <div class="card-grid">
+    <div class="section-title">Featured Outfits</div>
+    <div class="cards-container">
+      <!-- Card 1 -->
       <div class="card">
-        <!-- Summer Vibes -->
-        <img 
-          src="https://images.pexels.com/photos/1083926/pexels-photo-1083926.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-          alt="Floral dress and sun hat" />
-        <h3>Summer Vibes</h3>
-        <p>A chic summer outfit with a floral dress and sun hat.</p>
+        <img src="https://via.placeholder.com/400x300?text=Summer+Vibes" alt="Summer Vibes" />
+        <div class="card-content">
+          <h3>Summer Vibes</h3>
+          <p>A chic summer look with a floral dress and hat.</p>
+        </div>
       </div>
+      <!-- Card 2 -->
       <div class="card">
-        <!-- Autumn Comfort -->
-        <img 
-          src="https://images.pexels.com/photos/5746967/pexels-photo-5746967.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-          alt="Cozy sweater with jeans" />
-        <h3>Autumn Comfort</h3>
-        <p>A casual autumn outfit featuring a cozy sweater and jeans.</p>
+        <img src="https://via.placeholder.com/400x300?text=Autumn+Comfort" alt="Autumn Comfort" />
+        <div class="card-content">
+          <h3>Autumn Comfort</h3>
+          <p>A casual autumn outfit featuring a cozy sweater.</p>
+        </div>
       </div>
+      <!-- Card 3 -->
       <div class="card">
-        <!-- Office Elegance -->
-        <img 
-          src="https://images.pexels.com/photos/4386731/pexels-photo-4386731.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-          alt="Man in a suit" />
-        <h3>Office Elegance</h3>
-        <p>A formal office outfit with a tailored suit and tie.</p>
+        <img src="https://via.placeholder.com/400x300?text=Office+Elegance" alt="Office Elegance" />
+        <div class="card-content">
+          <h3>Office Elegance</h3>
+          <p>A polished look with a tailored suit and tie.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Explore Categories -->
   <section class="explore-categories">
-    <h2>Explore Categories</h2>
-    <div class="categories-grid">
-      <div class="category">
-        <img 
-          src="https://images.pexels.com/photos/1852389/pexels-photo-1852389.jpeg?auto=compress&cs=tinysrgb&h=80&w=80"
-          alt="Casual Wear" />
-        <p>Casual Wear</p>
+    <div class="section-title">Explore Categories</div>
+    <div class="cards-container">
+      <!-- Category 1 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/400x300?text=Casual+Wear" alt="Casual Wear" />
+        <div class="card-content">
+          <h3>Casual Wear</h3>
+        </div>
       </div>
-      <div class="category">
-        <img 
-          src="https://images.pexels.com/photos/4629629/pexels-photo-4629629.jpeg?auto=compress&cs=tinysrgb&h=80&w=80"
-          alt="Formal Wear" />
-        <p>Formal Wear</p>
+      <!-- Category 2 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/400x300?text=Formal+Wear" alt="Formal Wear" />
+        <div class="card-content">
+          <h3>Formal Wear</h3>
+        </div>
       </div>
-      <div class="category">
-        <img 
-          src="https://images.pexels.com/photos/999509/pexels-photo-999509.jpeg?auto=compress&cs=tinysrgb&h=80&w=80"
-          alt="Sportswear" />
-        <p>Sportswear</p>
+      <!-- Category 3 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/400x300?text=Sportswear" alt="Sportswear" />
+        <div class="card-content">
+          <h3>Sportswear</h3>
+        </div>
       </div>
-      <div class="category">
-        <img 
-          src="https://images.pexels.com/photos/1197083/pexels-photo-1197083.jpeg?auto=compress&cs=tinysrgb&h=80&w=80"
-          alt="Accessories" />
-        <p>Accessories</p>
+      <!-- Category 4 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/400x300?text=Accessories" alt="Accessories" />
+        <div class="card-content">
+          <h3>Accessories</h3>
+        </div>
       </div>
     </div>
   </section>
-</main>
 
-<footer>
-  <div class="footer-links">
-    <div class="footer-column">
-      <h4>Customer Service</h4>
-      <a href="#">Contact Us</a>
-      <a href="#">FAQ</a>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-column">
-      <h4>Follow Us</h4>
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-    </div>
-    <div class="footer-column">
-      <h4>About Us</h4>
-      <a href="#">Our Story</a>
-      <a href="#">Careers</a>
-    </div>
-  </div>
-  <div>&copy; 2023 YourStyleWardrobe</div>
-</footer>
+  </footer>
 
 </body>
 </html>
