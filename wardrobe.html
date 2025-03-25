@@ -4,18 +4,94 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>YourStyleWardrobe | Wardrobe Planner</title>
-  <link rel="stylesheet" href="style.css"/>
   <style>
-    /* Dark mode */
-    body.dark-mode {
-      background-color: #333;
-      color: #fff;
+    :root {
+      --primary-color: #4A90E2;
+      --secondary-color: #2D6AC2;
+      --bg-color: #F7FBFF;
+      --text-color: #333;
+      --dark-bg: #333;
+      --dark-text: #fff;
     }
-    body.dark-mode a {
+    body {
+      margin: 0; padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: Arial, sans-serif;
+    }
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    body.dark-mode .logo {
+      color: #87b9f7;
+    }
+    .btn {
+      background-color: var(--primary-color);
       color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: var(--secondary-color);
     }
 
-    /* Drag & Drop styling */
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      padding: 1rem 2rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      margin-right: 1rem;
+    }
+
+    /* Sidebar */
+    .main-container {
+      display: flex;
+      gap: 2rem;
+    }
+    .sidebar {
+      width: 250px;
+      border-right: 1px solid #eaeaea;
+      padding-right: 1rem;
+    }
+    .sidebar h3 {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: var(--primary-color);
+    }
+    .sidebar label {
+      display: block;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+    .sidebar input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+
+    /* Drag & Drop */
     .drag-items {
       display: flex;
       gap: 1rem;
@@ -43,7 +119,7 @@
       width: 100%;
       min-height: 300px;
       background-color: #f0f8ff;
-      border: 2px dashed #007bff;
+      border: 2px dashed var(--primary-color);
       border-radius: 6px;
       display: flex;
       flex-wrap: wrap;
@@ -67,135 +143,177 @@
       display: none;
       margin-top: 1rem;
     }
+
+    /* Footer */
+    footer {
+      background-color: #f1f1f1;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    footer ul {
+      list-style: none;
+      padding: 0;
+    }
+    footer a {
+      text-decoration: none;
+      color: var(--text-color);
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <nav style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background-color: #fefefe;">
-    <div class="logo" style="font-weight: bold; font-size: 1.2rem;">YourStyleWardrobe</div>
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="logo">YourStyleWardrobe</a>
     <div style="display: flex; align-items: center;">
-      <a href="index.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Home</a>
-      <a href="wardrobe.html" style="margin-right: 1rem; text-decoration: none; color: #333; opacity: 0.8;">Wardrobe Planner</a>
-      <a href="outfit.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Digital Closet</a>
-      <!-- Dark Mode Toggle -->
-      <button id="theme-toggle" style="padding: 0.5rem 1rem; cursor: pointer;">Dark Mode</button>
+      <a href="index.html">Home</a>
+      <a href="wardrobe.html" style="opacity: 0.8;">Wardrobe Planner</a>
+      <a href="outfit.html">Digital Closet</a>
+      <button id="theme-toggle" class="btn">Dark Mode</button>
     </div>
   </nav>
 
-  <div style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+  <div class="container">
     <h2>Wardrobe Planner</h2>
 
-    <!-- 1) Add Clothing Items or Upload Wardrobe Photo -->
-    <section style="margin-top: 1rem;">
-      <h3>Manage Your Wardrobe</h3>
-      <p>Add clothing items manually or upload a picture of your wardrobe.</p>
-      <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-        <input type="text" placeholder="Add Clothing Item (e.g. 'Blue Jeans')" style="padding: 0.5rem;" />
-        <button style="padding: 0.5rem 1rem;">Add Item</button>
-        <span style="margin-left: 1rem;">OR</span>
-        <input type="file" multiple />
-        <button style="padding: 0.5rem 1rem;">Upload</button>
-      </div>
-    </section>
-
-    <!-- 2) Choice: Manual Drag & Drop OR AI -->
-    <section style="margin-top: 2rem;">
-      <h3>Build an Outfit</h3>
-      <p>Select a method:</p>
-      <label>
-        <input type="radio" name="outfitMethod" value="manual" checked />
-        Manual Drag & Drop
-      </label>
-      <label style="margin-left: 1rem;">
-        <input type="radio" name="outfitMethod" value="ai" />
-        AI Recommended
-      </label>
-
-      <!-- Manual Drag & Drop Canvas -->
-      <div id="manualCanvas" style="margin-top: 1rem;">
-        <p>Drag items into the canvas below to create your outfit.</p>
-        <div class="drag-items">
-          <div class="drag-item" draggable="true">
-            <img src="casual-denim.jpg" alt="Casual denim outfit" />
-            <p>Casual Denim</p>
-          </div>
-          <div class="drag-item" draggable="true">
-            <img src="formal-elegance.jpg" alt="Formal elegance outfit" />
-            <p>Formal Elegance</p>
-          </div>
-          <div class="drag-item" draggable="true">
-            <img src="summer-vibes.jpg" alt="Summer vibes outfit" />
-            <p>Summer Vibes</p>
-          </div>
-          <div class="drag-item" draggable="true">
-            <img src="winter-warmth.jpg" alt="Winter warmth outfit" />
-            <p>Winter Warmth</p>
-          </div>
-        </div>
-        <div class="drag-canvas" id="dragCanvas">
-          <div class="drag-placeholder">Drag items here</div>
-        </div>
-        <button id="saveOutfitBtn" style="margin-top: 1rem; padding: 0.5rem 1rem;">Save Outfit</button>
+    <div class="main-container">
+      <!-- Sidebar with Filters & Sort -->
+      <div class="sidebar">
+        <h3>Filters & Sort</h3>
+        <label>
+          <input type="checkbox" class="filter-checkbox" data-category="Clothes" />
+          Clothes
+        </label>
+        <label>
+          <input type="checkbox" class="filter-checkbox" data-category="Shoes" />
+          Shoes
+        </label>
+        <label>
+          <input type="checkbox" class="filter-checkbox" data-category="Accessories" />
+          Accessories
+        </label>
+        <hr />
+        <label>
+          <input type="checkbox" id="sort-date" />
+          Sort by Date Added
+        </label>
       </div>
 
-      <!-- AI Recommended Outfits -->
-      <div id="aiOutfits">
-        <h4>AI-Recommended Outfits</h4>
-        <p>Based on weather, trends, occasion, and personal style...</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
-          <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
-            <img src="office-elegance.jpg" alt="Suggested Outfit 1" style="width: 100%; height: 200px; object-fit: cover;" />
-            <h4>Office Ready</h4>
-            <p>Tailored blazer, black slacks, neutral blouse.</p>
+      <!-- Main Content -->
+      <div style="flex: 1;">
+        <!-- 1) Add Clothing Items or Upload Wardrobe Photo -->
+        <section style="margin-bottom: 2rem;">
+          <h3>Manage Your Wardrobe</h3>
+          <p>Add clothing items manually or upload a picture of your wardrobe.</p>
+          <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+            <input type="text" placeholder="Add Clothing Item (e.g. 'Blue Jeans')" style="padding: 0.5rem;" />
+            <button class="btn">Add Item</button>
+            <span style="margin-left: 1rem;">OR</span>
+            <input type="file" multiple />
+            <button class="btn">Upload</button>
           </div>
-          <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
-            <img src="casual-denim.jpg" alt="Suggested Outfit 2" style="width: 100%; height: 200px; object-fit: cover;" />
-            <h4>Sunny Day Casual</h4>
-            <p>Light denim jacket, white tee, floral skirt.</p>
+        </section>
+
+        <!-- 2) Choice: Manual Drag & Drop OR AI -->
+        <section style="margin-bottom: 2rem;">
+          <h3>Build an Outfit</h3>
+          <p>Select a method:</p>
+          <label>
+            <input type="radio" name="outfitMethod" value="manual" checked />
+            Manual Drag & Drop
+          </label>
+          <label style="margin-left: 1rem;">
+            <input type="radio" name="outfitMethod" value="ai" />
+            AI Recommended
+          </label>
+
+          <!-- Manual Drag & Drop Canvas -->
+          <div id="manualCanvas" style="margin-top: 1rem;">
+            <p>Drag items into the canvas below to create your outfit.</p>
+            <div class="drag-items">
+              <!-- Replaced text with individual item names -->
+              <div class="drag-item" draggable="true">
+                <img src="casual-denim.jpg" alt="Blue Jeans" />
+                <p>Blue Jeans</p>
+              </div>
+              <div class="drag-item" draggable="true">
+                <img src="formal-elegance.jpg" alt="White Dress Shirt" />
+                <p>White Dress Shirt</p>
+              </div>
+              <div class="drag-item" draggable="true">
+                <img src="summer-vibes.jpg" alt="Straw Hat" />
+                <p>Straw Hat</p>
+              </div>
+              <div class="drag-item" draggable="true">
+                <img src="winter-warmth.jpg" alt="Leather Boots" />
+                <p>Leather Boots</p>
+              </div>
+            </div>
+            <div class="drag-canvas" id="dragCanvas">
+              <div class="drag-placeholder">Drag items here</div>
+            </div>
+            <button id="saveOutfitBtn" class="btn" style="margin-top: 1rem;">Save Outfit</button>
           </div>
-        </div>
-        <button style="margin-top: 1rem; padding: 0.5rem 1rem;">Refresh AI Suggestions</button>
-      </div>
-    </section>
 
-    <!-- 3) Virtual Try-On -->
-    <section style="margin-top: 2rem;">
-      <h3>Virtual Try-On (Preview)</h3>
-      <p>See how items look together in our digital closet. (Coming Soon!)</p>
-      <button style="padding: 0.5rem 1rem;">Launch Try-On</button>
-    </section>
+          <!-- AI Recommended Outfits -->
+          <div id="aiOutfits">
+            <h4>AI-Recommended Outfits</h4>
+            <p>Based on weather, trends, occasion, and personal style...</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+              <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
+                <img src="office-elegance.jpg" alt="Suggested Outfit 1" style="width: 100%; height: 200px; object-fit: cover;" />
+                <h4>Office Ready</h4>
+                <p>Tailored blazer, black slacks, neutral blouse.</p>
+              </div>
+              <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
+                <img src="casual-denim.jpg" alt="Suggested Outfit 2" style="width: 100%; height: 200px; object-fit: cover;" />
+                <h4>Sunny Day Casual</h4>
+                <p>Light denim jacket, white tee, floral skirt.</p>
+              </div>
+            </div>
+            <button class="btn" style="margin-top: 1rem;">Refresh AI Suggestions</button>
+          </div>
+        </section>
 
-    <!-- 4) Shopping Suggestions -->
-    <section style="margin-top: 2rem;">
-      <h3>Shopping Suggestions</h3>
-      <p>Missing a matching piece? Check out these partner recommendations:</p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
-        <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
-          <img src="accessories.jpg" alt="Suggested Accessory 1" style="width: 100%; height: 200px; object-fit: cover;" />
-          <h4>Classic Black Heels</h4>
-          <p>Perfect for your formal outfits.</p>
-          <button style="margin-top: 0.5rem;">Buy Now</button>
-        </div>
-        <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
-          <img src="accessories.jpg" alt="Suggested Accessory 2" style="width: 100%; height: 200px; object-fit: cover;" />
-          <h4>Trendy Fedora Hat</h4>
-          <p>Add flair to your casual wear.</p>
-          <button style="margin-top: 0.5rem;">Buy Now</button>
-        </div>
+        <!-- 3) Virtual Try-On -->
+        <section style="margin-bottom: 2rem;">
+          <h3>Virtual Try-On (Preview)</h3>
+          <p>See how items look together in our digital closet. (Coming Soon!)</p>
+          <button class="btn">Launch Try-On</button>
+        </section>
+
+        <!-- 4) Shopping Suggestions -->
+        <section>
+          <h3>Shopping Suggestions</h3>
+          <p>Missing a matching piece? Check out these partner recommendations:</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+            <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
+              <img src="accessories.jpg" alt="Suggested Accessory 1" style="width: 100%; height: 200px; object-fit: cover;" />
+              <h4>Classic Black Heels</h4>
+              <p>Perfect for your formal outfits.</p>
+              <button class="btn" style="margin-top: 0.5rem;">Buy Now</button>
+            </div>
+            <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
+              <img src="accessories.jpg" alt="Suggested Accessory 2" style="width: 100%; height: 200px; object-fit: cover;" />
+              <h4>Trendy Fedora Hat</h4>
+              <p>Add flair to your casual wear.</p>
+              <button class="btn" style="margin-top: 0.5rem;">Buy Now</button>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   </div>
 
   <!-- Footer -->
-  <footer style="background-color: #f1f1f1; padding: 2rem; margin-top: 2rem;">
+  <footer>
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
       <div>
         <h4>Quick Links</h4>
-        <ul style="list-style: none; padding: 0;">
-          <li><a href="#" style="text-decoration: none; color: #333;">Terms of Service</a></li>
-          <li><a href="#" style="text-decoration: none; color: #333;">Privacy Policy</a></li>
-          <li><a href="#" style="text-decoration: none; color: #333;">Contact Us</a></li>
+        <ul>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
         </ul>
       </div>
       <div>
@@ -257,6 +375,15 @@
     saveOutfitBtn.addEventListener('click', () => {
       alert('Outfit saved (this is a placeholder—no backend yet).');
     });
+
+    // Filtering & Sorting
+    const filterCheckboxes = document.querySelectorAll('.filter-checkbox');
+    const sortDateCheckbox = document.getElementById('sort-date');
+    // Example items container (if you have a list of items)
+    // For demonstration, let's assume you have #wardrobeItems for your existing items.
+    // If needed, re-implement the logic from prior versions.
+
+    // TODO: Implement your existing filtering/sorting logic if you have an item grid.
   </script>
 </body>
 </html>
