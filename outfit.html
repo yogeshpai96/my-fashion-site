@@ -20,41 +20,16 @@
       object-fit: cover;
     }
 
-    /* Drag & Drop styling */
-    .drag-items {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .drag-item {
-      width: 120px;
-      cursor: grab;
-      border: 1px solid #eaeaea;
-      border-radius: 6px;
-      overflow: hidden;
-      text-align: center;
-      user-select: none;
-    }
-    .drag-canvas {
+    /* Notes Display Box */
+    #notesDisplay {
       margin-top: 1rem;
-      width: 100%;
-      min-height: 300px;
-      border: 2px dashed #ccc;
-      border-radius: 6px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
       padding: 1rem;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
     }
-    .drag-placeholder {
-      width: 120px;
-      height: 120px;
-      border: 1px dashed #aaa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
-      font-size: 0.8rem;
+    #notesDisplay strong {
+      display: block;
+      margin-bottom: 0.5rem;
     }
   </style>
 </head>
@@ -74,51 +49,56 @@
   <div class="main-container" style="flex-direction: column; margin: 2rem;">
     <h2>Welcome to Your Digital Closet</h2>
 
-    <!-- Drag & Drop Items (Feature #6) -->
-    <div class="drag-items">
-      <!-- Drag Item 1 -->
-      <div class="drag-item" draggable="true">
+    <div class="outfit-tiles">
+      <!-- Outfit Tile 1 -->
+      <div class="outfit-tile">
         <div class="image-container">
           <img src="casual-denim.jpg" alt="Casual denim outfit" />
         </div>
-        <p>Casual Denim</p>
+        <h3>Casual Denim</h3>
+        <p>Mix and match a classic pair of denim jeans with your favorite t-shirt for a casual look.</p>
       </div>
-      <!-- Drag Item 2 -->
-      <div class="drag-item" draggable="true">
+      <!-- Outfit Tile 2 -->
+      <div class="outfit-tile">
         <div class="image-container">
-          <img src="formal-elegance.jpg" alt="Formal elegance outfit" />
+          <img src="formal-elegance.jpg" alt="Formal suit and tie ensemble" />
         </div>
-        <p>Formal Elegance</p>
+        <h3>Formal Elegance</h3>
+        <p>A sleek suit paired with a sophisticated formal ensemble.</p>
       </div>
-      <!-- Drag Item 3 -->
-      <div class="drag-item" draggable="true">
+      <!-- Outfit Tile 3 -->
+      <div class="outfit-tile">
         <div class="image-container">
-          <img src="summer-vibes.jpg" alt="Summer vibes outfit" />
+          <img src="summer-vibes.jpg" alt="Summer vibes with a floral dress" />
         </div>
-        <p>Summer Vibes</p>
+        <h3>Summer Vibes</h3>
+        <p>Bright floral dress and sandals for a breezy, chic look.</p>
       </div>
-      <!-- Drag Item 4 -->
-      <div class="drag-item" draggable="true">
+      <!-- Outfit Tile 4 -->
+      <div class="outfit-tile">
         <div class="image-container">
-          <img src="winter-warmth.jpg" alt="Winter warmth outfit" />
+          <img src="winter-warmth.jpg" alt="Winter outfit with coat and scarf" />
         </div>
-        <p>Winter Warmth</p>
+        <h3>Winter Warmth</h3>
+        <p>Stay cozy with a matching scarf and coat for the colder months.</p>
       </div>
     </div>
 
-    <div class="drag-canvas" id="dragCanvas">
-      <div class="drag-placeholder">Drag items here</div>
-    </div>
+    <!-- Save Outfit Button (unchanged) -->
+    <button class="btn">Save Outfit</button>
 
-    <button class="btn" id="saveOutfitBtn">Save Outfit</button>
-
-    <!-- Notes Section (Feature #2: Local Storage) -->
+    <!-- Notes Section (Feature #2: Local Storage) - clearer display -->
     <div class="note-section" style="margin-top: 2rem;">
       <h4>Add Notes</h4>
       <textarea id="notesInput" placeholder="Add any personal notes here..." style="width:100%; min-height:80px;"></textarea>
       <div style="margin-top: 0.5rem;">
         <button class="btn" id="saveNotesBtn">Save Notes</button>
         <button class="btn" id="loadNotesBtn">Load Notes</button>
+      </div>
+      <!-- Show the saved notes below -->
+      <div id="notesDisplay">
+        <strong>Saved Notes:</strong>
+        <p id="notesText"></p>
       </div>
     </div>
 
@@ -133,7 +113,7 @@
     </div>
   </div>
 
-  <!-- Footer (unchanged) -->
+  <!-- Footer -->
   <footer>
     <div class="footer-container">
       <div class="footer-column">
@@ -159,44 +139,15 @@
   </footer>
 
   <script>
-    // Feature #6: Basic Drag-and-Drop
-    const dragItems = document.querySelectorAll('.drag-item');
-    const dragCanvas = document.getElementById('dragCanvas');
-
-    let draggedItem = null;
-
-    dragItems.forEach(item => {
-      item.addEventListener('dragstart', e => {
-        draggedItem = item;
-        e.dataTransfer.effectAllowed = 'move';
-      });
-      item.addEventListener('dragend', () => {
-        draggedItem = null;
-      });
-    });
-
-    dragCanvas.addEventListener('dragover', e => {
-      e.preventDefault();
-    });
-    dragCanvas.addEventListener('drop', () => {
-      if (draggedItem) {
-        dragCanvas.appendChild(draggedItem);
-      }
-    });
-
-    // "Save Outfit" button (simple placeholder)
-    const saveOutfitBtn = document.getElementById('saveOutfitBtn');
-    saveOutfitBtn.addEventListener('click', () => {
-      alert('Outfit saved (this is a placeholder—no backend yet).');
-    });
-
-    // Feature #2: Local Storage for Notes
+    // Local Storage for Notes - with clearer display
     const notesInput = document.getElementById('notesInput');
     const saveNotesBtn = document.getElementById('saveNotesBtn');
     const loadNotesBtn = document.getElementById('loadNotesBtn');
+    const notesText = document.getElementById('notesText');
 
     saveNotesBtn.addEventListener('click', () => {
       localStorage.setItem('digitalClosetNotes', notesInput.value);
+      notesText.innerText = notesInput.value;
       alert('Notes saved locally!');
     });
 
@@ -204,6 +155,7 @@
       const savedNotes = localStorage.getItem('digitalClosetNotes');
       if (savedNotes) {
         notesInput.value = savedNotes;
+        notesText.innerText = savedNotes;
         alert('Notes loaded from local storage.');
       } else {
         alert('No saved notes found.');
