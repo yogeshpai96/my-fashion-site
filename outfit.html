@@ -6,6 +6,15 @@
   <title>YourStyleWardrobe | Digital Closet</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
+    /* Dark mode */
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+    body.dark-mode a {
+      color: #fff;
+    }
+
     /* Square Image Hack for items */
     .image-container {
       position: relative;
@@ -36,64 +45,74 @@
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="logo">YourStyleWardrobe</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="wardrobe.html">Wardrobe Planner</a>
-      <a href="outfit.html" style="opacity: 0.8;">Digital Closet</a>
+  <nav style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background-color: #fefefe;">
+    <div class="logo" style="font-weight: bold; font-size: 1.2rem;">YourStyleWardrobe</div>
+    <div style="display: flex; align-items: center;">
+      <a href="index.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Home</a>
+      <a href="wardrobe.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Wardrobe Planner</a>
+      <a href="outfit.html" style="margin-right: 1rem; text-decoration: none; color: #333; opacity: 0.8;">Digital Closet</a>
+      <!-- Dark Mode Toggle -->
+      <button id="theme-toggle" style="padding: 0.5rem 1rem; cursor: pointer;">Dark Mode</button>
     </div>
   </nav>
 
   <!-- Digital Closet Section -->
-  <div class="main-container" style="flex-direction: column; margin: 2rem;">
+  <div style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
     <h2>Welcome to Your Digital Closet</h2>
 
-    <div class="outfit-tiles">
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
       <!-- Outfit Tile 1 -->
-      <div class="outfit-tile">
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
         <div class="image-container">
           <img src="casual-denim.jpg" alt="Casual denim outfit" />
         </div>
-        <h3>Casual Denim</h3>
-        <p>Mix and match a classic pair of denim jeans with your favorite t-shirt for a casual look.</p>
+        <div style="padding: 1rem;">
+          <h3>Casual Denim</h3>
+          <p>Mix and match a classic pair of denim jeans with your favorite t-shirt for a casual look.</p>
+        </div>
       </div>
       <!-- Outfit Tile 2 -->
-      <div class="outfit-tile">
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
         <div class="image-container">
           <img src="formal-elegance.jpg" alt="Formal suit and tie ensemble" />
         </div>
-        <h3>Formal Elegance</h3>
-        <p>A sleek suit paired with a sophisticated formal ensemble.</p>
+        <div style="padding: 1rem;">
+          <h3>Formal Elegance</h3>
+          <p>A sleek suit paired with a sophisticated formal ensemble.</p>
+        </div>
       </div>
       <!-- Outfit Tile 3 -->
-      <div class="outfit-tile">
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
         <div class="image-container">
           <img src="summer-vibes.jpg" alt="Summer vibes with a floral dress" />
         </div>
-        <h3>Summer Vibes</h3>
-        <p>Bright floral dress and sandals for a breezy, chic look.</p>
+        <div style="padding: 1rem;">
+          <h3>Summer Vibes</h3>
+          <p>Bright floral dress and sandals for a breezy, chic look.</p>
+        </div>
       </div>
       <!-- Outfit Tile 4 -->
-      <div class="outfit-tile">
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
         <div class="image-container">
           <img src="winter-warmth.jpg" alt="Winter outfit with coat and scarf" />
         </div>
-        <h3>Winter Warmth</h3>
-        <p>Stay cozy with a matching scarf and coat for the colder months.</p>
+        <div style="padding: 1rem;">
+          <h3>Winter Warmth</h3>
+          <p>Stay cozy with a matching scarf and coat for the colder months.</p>
+        </div>
       </div>
     </div>
 
     <!-- Save Outfit Button (unchanged) -->
-    <button class="btn">Save Outfit</button>
+    <button style="margin-top: 1rem; padding: 0.5rem 1rem;">Save Outfit</button>
 
     <!-- Notes Section (Feature #2: Local Storage) - clearer display -->
-    <div class="note-section" style="margin-top: 2rem;">
+    <div style="margin-top: 2rem;">
       <h4>Add Notes</h4>
       <textarea id="notesInput" placeholder="Add any personal notes here..." style="width:100%; min-height:80px;"></textarea>
       <div style="margin-top: 0.5rem;">
-        <button class="btn" id="saveNotesBtn">Save Notes</button>
-        <button class="btn" id="loadNotesBtn">Load Notes</button>
+        <button id="saveNotesBtn" style="padding: 0.5rem 1rem;">Save Notes</button>
+        <button id="loadNotesBtn" style="padding: 0.5rem 1rem;">Load Notes</button>
       </div>
       <!-- Show the saved notes below -->
       <div id="notesDisplay">
@@ -102,8 +121,8 @@
       </div>
     </div>
 
-    <!-- Styling Tips (unchanged) -->
-    <div class="styling-tips" style="margin-top: 2rem;">
+    <!-- Styling Tips -->
+    <div style="margin-top: 2rem;">
       <h4>Styling Tips</h4>
       <ul>
         <li>Layer your pieces to add more dynamic looks.</li>
@@ -114,32 +133,38 @@
   </div>
 
   <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-column">
+  <footer style="background-color: #f1f1f1; padding: 2rem; margin-top: 2rem;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+      <div>
         <h4>Privacy Policy</h4>
-        <ul>
-          <li><a href="#">Terms of Service</a></li>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="#" style="text-decoration: none; color: #333;">Terms of Service</a></li>
         </ul>
       </div>
-      <div class="footer-column">
+      <div>
         <h4>Contact Us</h4>
-        <ul>
-          <li><a href="#">FAQ</a></li>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="#" style="text-decoration: none; color: #333;">FAQ</a></li>
         </ul>
       </div>
-      <div class="footer-column">
+      <div>
         <h4>About Us</h4>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Careers</a></li>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="#" style="text-decoration: none; color: #333;">Our Story</a></li>
+          <li><a href="#" style="text-decoration: none; color: #333;">Careers</a></li>
         </ul>
       </div>
     </div>
   </footer>
 
   <script>
-    // Local Storage for Notes - with clearer display
+    // Dark Mode Toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    // Local Storage for Notes
     const notesInput = document.getElementById('notesInput');
     const saveNotesBtn = document.getElementById('saveNotesBtn');
     const loadNotesBtn = document.getElementById('loadNotesBtn');
