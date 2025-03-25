@@ -6,7 +6,7 @@
   <title>YourStyleWardrobe | Wardrobe Planner</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    /* Basic Modal Styles */
+    /* Basic Modal Styles (for item details) */
     .modal {
       display: none; /* Hidden by default */
       position: fixed;
@@ -29,6 +29,54 @@
       top: 8px; right: 8px;
       cursor: pointer;
       font-weight: bold;
+    }
+
+    /* Drag & Drop styling */
+    .drag-items {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .drag-item {
+      width: 120px;
+      cursor: grab;
+      border: 1px solid #eaeaea;
+      border-radius: 6px;
+      overflow: hidden;
+      text-align: center;
+      user-select: none;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .drag-item img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+    }
+    .drag-canvas {
+      margin-top: 2rem;
+      width: 100%;
+      min-height: 400px;
+      background-color: #f0f8ff;
+      border: 2px dashed #007bff;
+      border-radius: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1rem;
+      justify-content: center;
+      align-items: center;
+    }
+    .drag-placeholder {
+      width: 140px;
+      height: 140px;
+      border: 2px dashed #aaa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -110,7 +158,33 @@
       <button class="btn">Add Clothing</button>
       <button class="btn">Create Outfit</button>
 
-      <!-- MVP Feature Placeholders (unchanged) -->
+      <!-- Drag & Drop Section (moved from Digital Closet) -->
+      <h3 style="margin-top: 2rem;">Build Your Outfit (Drag & Drop)</h3>
+      <p>Drag items into the canvas below to visualize different combinations.</p>
+      <div class="drag-items">
+        <div class="drag-item" draggable="true">
+          <img src="casual-denim.jpg" alt="Casual denim outfit" />
+          <p>Casual Denim</p>
+        </div>
+        <div class="drag-item" draggable="true">
+          <img src="formal-elegance.jpg" alt="Formal elegance outfit" />
+          <p>Formal Elegance</p>
+        </div>
+        <div class="drag-item" draggable="true">
+          <img src="summer-vibes.jpg" alt="Summer vibes outfit" />
+          <p>Summer Vibes</p>
+        </div>
+        <div class="drag-item" draggable="true">
+          <img src="winter-warmth.jpg" alt="Winter warmth outfit" />
+          <p>Winter Warmth</p>
+        </div>
+      </div>
+      <div class="drag-canvas" id="dragCanvas">
+        <div class="drag-placeholder">Drag items here</div>
+      </div>
+      <button class="btn" id="saveOutfitBtn" style="margin-top: 1rem;">Save Outfit</button>
+
+      <!-- MVP Feature Placeholders -->
       <section class="upload-wardrobe" style="margin-top: 2rem;">
         <h3>Upload Wardrobe Photos</h3>
         <p>Upload photos of your clothing items to let our AI help categorize them.</p>
@@ -119,7 +193,7 @@
       </section>
       <section class="daily-outfits" style="margin-top: 2rem;">
         <h3>AI-Recommended Outfits</h3>
-        <p>Based on weather, trends, occasion, and personal style...</p>
+        <p>Based on weather, trends, occasion, and personal style, here are some daily suggestions:</p>
         <div class="cards-container">
           <div class="card">
             <img src="office-elegance.jpg" alt="Suggested Outfit 1" />
@@ -177,7 +251,7 @@
     </div>
   </div>
 
-  <!-- Modal for item details (Feature #3) -->
+  <!-- Modal for item details -->
   <div id="itemModal" class="modal">
     <div class="modal-content" id="modalContent">
       <span class="close-btn" id="closeModal">&times;</span>
@@ -187,7 +261,7 @@
     </div>
   </div>
 
-  <!-- Footer (unchanged) -->
+  <!-- Footer -->
   <footer>
     <div class="footer-container">
       <div class="footer-column">
@@ -205,7 +279,7 @@
   </footer>
 
   <script>
-    // Feature #1: Filtering & Sorting
+    // ========== Filtering & Sorting ==========
     const filterCheckboxes = document.querySelectorAll('.filter-checkbox');
     const sortDateCheckbox = document.getElementById('sort-date');
     const wardrobeCards = document.getElementById('wardrobeCards');
@@ -222,7 +296,7 @@
       // 2) Convert NodeList to array for sorting
       let cardsArray = Array.from(wardrobeCards.querySelectorAll('.card'));
 
-      // 3) Filter by category (if any checkboxes are selected)
+      // 3) Filter by category
       if (activeCategories.length > 0) {
         cardsArray = cardsArray.filter(card => {
           const cardCat = card.getAttribute('data-category');
@@ -233,7 +307,6 @@
       // 4) Sort by date if checkbox is checked
       if (sortDateCheckbox.checked) {
         cardsArray.sort((a, b) => {
-          // Compare data-date attributes
           const dateA = new Date(a.getAttribute('data-date'));
           const dateB = new Date(b.getAttribute('data-date'));
           // Newest first
@@ -246,22 +319,20 @@
       cardsArray.forEach(card => wardrobeCards.appendChild(card));
     }
 
-    // Event listeners for filters and sort
     filterCheckboxes.forEach(cb => cb.addEventListener('change', applyFiltersAndSort));
     sortDateCheckbox.addEventListener('change', applyFiltersAndSort);
 
-    // Feature #3: Pop-ups/Modals for item details
+    // ========== Item Details Modal ==========
     const modal = document.getElementById('itemModal');
     const closeModalBtn = document.getElementById('closeModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalImg = document.getElementById('modalImg');
     const modalDesc = document.getElementById('modalDesc');
 
-    // Open modal when card is clicked
+    // Open modal when a card is clicked
     wardrobeCards.addEventListener('click', (e) => {
       const card = e.target.closest('.card');
       if (card) {
-        // Grab info from the card
         const title = card.querySelector('h3').innerText;
         const imgSrc = card.querySelector('img').src;
         const desc = card.querySelector('p').innerText;
@@ -269,19 +340,48 @@
         modalTitle.innerText = title;
         modalImg.src = imgSrc;
         modalDesc.innerText = desc;
-        modal.style.display = 'flex'; // Show modal
+        modal.style.display = 'flex';
       }
     });
-
     // Close modal
     closeModalBtn.addEventListener('click', () => {
       modal.style.display = 'none';
     });
-    // Also close if user clicks outside modal content
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.style.display = 'none';
       }
+    });
+
+    // ========== Drag & Drop (moved from Digital Closet) ==========
+    const dragItems = document.querySelectorAll('.drag-item');
+    const dragCanvas = document.getElementById('dragCanvas');
+
+    let draggedItem = null;
+
+    dragItems.forEach(item => {
+      item.addEventListener('dragstart', e => {
+        draggedItem = item;
+        e.dataTransfer.effectAllowed = 'move';
+      });
+      item.addEventListener('dragend', () => {
+        draggedItem = null;
+      });
+    });
+
+    dragCanvas.addEventListener('dragover', e => {
+      e.preventDefault();
+    });
+    dragCanvas.addEventListener('drop', () => {
+      if (draggedItem) {
+        dragCanvas.appendChild(draggedItem);
+      }
+    });
+
+    // "Save Outfit" button (placeholder)
+    const saveOutfitBtn = document.getElementById('saveOutfitBtn');
+    saveOutfitBtn.addEventListener('click', () => {
+      alert('Outfit saved (this is a placeholder—no backend yet).');
     });
   </script>
 </body>
