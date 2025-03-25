@@ -12,7 +12,6 @@
   <nav class="navbar">
     <div class="logo">YourStyleWardrobe</div>
     <div class="nav-links">
-      <!-- Reorder the links: 1) Home, 2) Wardrobe Planner, 3) Digital Closet -->
       <a href="index.html">Home</a>
       <a href="wardrobe.html">Wardrobe Planner</a>
       <a href="outfit.html">Digital Closet</a>
@@ -32,10 +31,11 @@
     <input type="text" placeholder="Search for outfits, brands, or styles..." />
   </div>
 
-  <!-- Featured Outfits -->
+  <!-- Featured Outfits (Centered) -->
   <section class="featured-outfits">
     <h2 class="section-title">Featured Outfits</h2>
-    <div class="cards-container">
+    <!-- Inline style to center and limit width -->
+    <div class="cards-container" style="max-width: 900px; margin: 0 auto; justify-items: center;">
       <!-- Card 1: Summer Vibes -->
       <div class="card">
         <img src="summer-vibes.jpg" alt="Summer Vibes outfit with a floral dress" />
@@ -44,7 +44,6 @@
           <p>A chic summer look with a floral dress and hat.</p>
         </div>
       </div>
-
       <!-- Card 2: Autumn Comfort -->
       <div class="card">
         <img src="autumn-comfort.jpg" alt="Autumn outfit featuring a cozy sweater" />
@@ -53,7 +52,6 @@
           <p>A casual autumn outfit featuring a cozy sweater.</p>
         </div>
       </div>
-
       <!-- Card 3: Office Elegance -->
       <div class="card">
         <img src="office-elegance.jpg" alt="Office attire with a tailored suit" />
@@ -100,7 +98,7 @@
     </div>
   </section>
 
-  <!-- New Section: User Ratings & Testimonials -->
+  <!-- Testimonials Section -->
   <section style="padding: 2rem 0; background-color: #f9f9f9;">
     <h2 style="text-align: center; color: #4A90E2; margin-bottom: 1rem;">What Our Users Say</h2>
     <p style="text-align: center; color: #555;">Real experiences from people who transformed their style habits.</p>
@@ -129,13 +127,41 @@
           <p>⭐⭐⭐⭐⭐</p>
         </div>
       </div>
-      <!-- Optional: Additional testimonial -->
+      <!-- Testimonial 4 -->
       <div class="card" style="max-width: 300px;">
         <div class="card-content">
           <h3>David R.</h3>
           <p>"It's not just about the clothes; it's about understanding your personal style."</p>
           <p>⭐⭐⭐⭐</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof Section -->
+  <section style="text-align: center; padding: 2rem 0;">
+    <h2 style="color: #4A90E2; margin-bottom: 0.5rem;">Trusted by Thousands</h2>
+    <p style="color: #555;">Join our community of fashion-forward, style-savvy users!</p>
+    <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap;">
+      <!-- Stat 1 -->
+      <div>
+        <h3 style="color: #4A90E2; font-size: 1.8rem;">50,000+</h3>
+        <p>Active Users</p>
+      </div>
+      <!-- Stat 2 -->
+      <div>
+        <h3 style="color: #4A90E2; font-size: 1.8rem;">1,200+</h3>
+        <p>Reviews</p>
+      </div>
+      <!-- Stat 3 -->
+      <div>
+        <h3 style="color: #4A90E2; font-size: 1.8rem;">4.9</h3>
+        <p>App Store Rating</p>
+      </div>
+      <!-- Stat 4 -->
+      <div>
+        <h3 style="color: #4A90E2; font-size: 1.8rem;">97%</h3>
+        <p>User Satisfaction</p>
       </div>
     </div>
   </section>
