@@ -6,7 +6,7 @@
   <title>YourStyleWardrobe | Home</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Minimal dark mode styling (unchanged) */
+    /* Basic dark mode styling */
     body.dark-mode {
       background-color: #333;
       color: #fff;
@@ -34,7 +34,7 @@
     /* Make the image square */
     .image-container {
       position: relative;
-      width: 300px;       /* Adjust to your preferred size */
+      width: 300px;       /* Adjust as preferred */
       margin: 0 auto;     /* Center the container */
       padding-top: 100%;  /* 1:1 aspect ratio */
       overflow: hidden;
@@ -46,25 +46,37 @@
       object-fit: cover;
     }
     .carousel-controls {
-      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;  /* Center the buttons */
+      margin-top: 1rem;
+      gap: 1rem;
     }
     .carousel-controls button {
-      margin: 0 0.25rem;
+      width: 40px;
+      height: 40px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
       cursor: pointer;
+      font-weight: bold;
+    }
+    .carousel-controls button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="logo">YourStyleWardrobe</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="wardrobe.html">Wardrobe Planner</a>
-      <a href="outfit.html">Digital Closet</a>
-      <!-- Light/Dark Mode Toggle Button -->
-      <button id="theme-toggle" class="btn" style="margin-left: 1rem;">Toggle Dark Mode</button>
+  <nav class="navbar" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background-color: #fefefe;">
+    <div class="logo" style="font-weight: bold; font-size: 1.2rem;">YourStyleWardrobe</div>
+    <div class="nav-links" style="display: flex; align-items: center;">
+      <a href="index.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Home</a>
+      <a href="wardrobe.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Wardrobe Planner</a>
+      <a href="outfit.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Digital Closet</a>
+      <!-- Dark Mode Toggle -->
+      <button id="theme-toggle" style="padding: 0.5rem 1rem; cursor: pointer;">Dark Mode</button>
     </div>
   </nav>
 
@@ -78,7 +90,7 @@
 
   <!-- Carousel: Featured Outfits (square images) -->
   <section class="featured-outfits">
-    <h2 class="section-title">Featured Outfits</h2>
+    <h2 style="text-align: center; margin-bottom: 1rem;">Featured Outfits</h2>
     <div class="carousel-container">
       <!-- Slide 1 -->
       <div class="carousel-slide">
@@ -106,36 +118,36 @@
       </div>
     </div>
     <div class="carousel-controls">
-      <button id="prevSlide">Previous</button>
-      <button id="nextSlide">Next</button>
+      <button id="prevSlide">←</button>
+      <button id="nextSlide">→</button>
     </div>
   </section>
 
   <!-- Explore Categories -->
-  <section class="explore-categories">
-    <h2 class="section-title">Explore Categories</h2>
-    <div class="cards-container">
-      <div class="card">
-        <img src="casual-wear.jpg" alt="Casual Wear" />
-        <div class="card-content">
+  <section class="explore-categories" style="padding: 2rem 0;">
+    <h2 style="text-align: center; margin-bottom: 1rem;">Explore Categories</h2>
+    <div class="cards-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto;">
+      <div class="card" style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
+        <img src="casual-wear.jpg" alt="Casual Wear" style="width: 100%; height: 200px; object-fit: cover;" />
+        <div style="padding: 1rem;">
           <h3>Casual Wear</h3>
         </div>
       </div>
-      <div class="card">
-        <img src="formal-wear.jpg" alt="Formal Wear" />
-        <div class="card-content">
+      <div class="card" style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
+        <img src="formal-wear.jpg" alt="Formal Wear" style="width: 100%; height: 200px; object-fit: cover;" />
+        <div style="padding: 1rem;">
           <h3>Formal Wear</h3>
         </div>
       </div>
-      <div class="card">
-        <img src="sportswear.jpg" alt="Sportswear" />
-        <div class="card-content">
+      <div class="card" style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
+        <img src="sportswear.jpg" alt="Sportswear" style="width: 100%; height: 200px; object-fit: cover;" />
+        <div style="padding: 1rem;">
           <h3>Sportswear</h3>
         </div>
       </div>
-      <div class="card">
-        <img src="accessories.jpg" alt="Accessories" />
-        <div class="card-content">
+      <div class="card" style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
+        <img src="accessories.jpg" alt="Accessories" style="width: 100%; height: 200px; object-fit: cover;" />
+        <div style="padding: 1rem;">
           <h3>Accessories</h3>
         </div>
       </div>
@@ -146,34 +158,26 @@
   <section style="padding: 2rem 0; background-color: #f9f9f9;">
     <h2 style="text-align: center; color: #4A90E2; margin-bottom: 1rem;">What Our Users Say</h2>
     <p style="text-align: center; color: #555;">Real experiences from people who transformed their style habits.</p>
-    <div class="cards-container">
-      <div class="card" style="max-width: 300px;">
-        <div class="card-content">
-          <h3>Jane K.</h3>
-          <p>"I never realized how much easier it is to plan outfits until I used YourStyleWardrobe."</p>
-          <p>⭐⭐⭐⭐⭐</p>
-        </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding: 2rem 0;">
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem; max-width: 300px; margin: 0 auto;">
+        <h3>Jane K.</h3>
+        <p>"I never realized how much easier it is to plan outfits until I used YourStyleWardrobe."</p>
+        <p>⭐⭐⭐⭐⭐</p>
       </div>
-      <div class="card" style="max-width: 300px;">
-        <div class="card-content">
-          <h3>Michael T.</h3>
-          <p>"Their digital closet is a game-changer—no more guesswork each morning!"</p>
-          <p>⭐⭐⭐⭐</p>
-        </div>
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem; max-width: 300px; margin: 0 auto;">
+        <h3>Michael T.</h3>
+        <p>"Their digital closet is a game-changer—no more guesswork each morning!"</p>
+        <p>⭐⭐⭐⭐</p>
       </div>
-      <div class="card" style="max-width: 300px;">
-        <div class="card-content">
-          <h3>Ana P.</h3>
-          <p>"The wardrobe planner helped me rediscover pieces I forgot I even owned."</p>
-          <p>⭐⭐⭐⭐⭐</p>
-        </div>
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem; max-width: 300px; margin: 0 auto;">
+        <h3>Ana P.</h3>
+        <p>"The wardrobe planner helped me rediscover pieces I forgot I even owned."</p>
+        <p>⭐⭐⭐⭐⭐</p>
       </div>
-      <div class="card" style="max-width: 300px;">
-        <div class="card-content">
-          <h3>David R.</h3>
-          <p>"It's not just about the clothes; it's about understanding your personal style."</p>
-          <p>⭐⭐⭐⭐</p>
-        </div>
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem; max-width: 300px; margin: 0 auto;">
+        <h3>David R.</h3>
+        <p>"It's not just about the clothes; it's about understanding your personal style."</p>
+        <p>⭐⭐⭐⭐</p>
       </div>
     </div>
   </section>
@@ -203,34 +207,34 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-column">
+  <footer style="background-color: #f1f1f1; padding: 2rem;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; row-gap: 1rem;">
+      <div>
         <h4>Customer Service</h4>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">FAQ</a></li>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="#" style="text-decoration: none; color: #333;">Contact Us</a></li>
+          <li><a href="#" style="text-decoration: none; color: #333;">FAQ</a></li>
         </ul>
       </div>
-      <div class="footer-column">
+      <div>
         <h4>Follow Us</h4>
-        <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Facebook</a></li>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="#" style="text-decoration: none; color: #333;">Instagram</a></li>
+          <li><a href="#" style="text-decoration: none; color: #333;">Facebook</a></li>
         </ul>
       </div>
-      <div class="footer-column">
+      <div>
         <h4>About Us</h4>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Careers</a></li>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="#" style="text-decoration: none; color: #333;">Our Story</a></li>
+          <li><a href="#" style="text-decoration: none; color: #333;">Careers</a></li>
         </ul>
       </div>
-      <div class="footer-column">
+      <div>
         <h4>Legal</h4>
-        <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="#" style="text-decoration: none; color: #333;">Privacy Policy</a></li>
+          <li><a href="#" style="text-decoration: none; color: #333;">Terms of Service</a></li>
         </ul>
       </div>
     </div>
@@ -238,7 +242,7 @@
 
   <!-- Inline JavaScript -->
   <script>
-    // Light/Dark Mode Toggle
+    // Dark Mode Toggle
     const themeToggleBtn = document.getElementById('theme-toggle');
     themeToggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
