@@ -3,26 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YourStyleWardrobe | Wardrobe Organizer</title>
-  <!-- Make sure you have the updated blue-themed style.css in your project -->
+  <title>YourStyleWardrobe | Wardrobe Planner</title>
   <link rel="stylesheet" href="style.css"/>
-  <style>
-    /* You can keep these overrides or move them into style.css if preferred */
-
-    /* Example override for section headings in MVP placeholders */
-    section h3 {
-      color: var(--secondary-color);
-      margin-bottom: 0.5rem;
-    }
-    section p {
-      color: #555;
-      margin-bottom: 1rem;
-    }
-    /* Card layout inside MVP sections, if needed */
-    .cards-container .card-content button.btn {
-      margin-top: 0.5rem;
-    }
-  </style>
 </head>
 <body>
 
@@ -30,10 +12,10 @@
   <nav class="navbar">
     <div class="logo">YourStyleWardrobe</div>
     <div class="nav-links">
+      <!-- Updated order: 1) Home, 2) Wardrobe Planner, 3) Digital Closet -->
       <a href="index.html">Home</a>
-      <a href="outfit.html">Outfit Planner</a>
-      <!-- Slightly highlight the Wardrobe Organizer link -->
-      <a href="wardrobe.html" style="opacity: 0.8;">Wardrobe Organizer</a>
+      <a href="wardrobe.html" style="opacity: 0.8;">Wardrobe Planner</a>
+      <a href="outfit.html">Digital Closet</a>
     </div>
   </nav>
 
@@ -63,7 +45,7 @@
 
     <!-- Wardrobe Content -->
     <div class="content">
-      <h2>My Wardrobe</h2>
+      <h2>My Wardrobe Planner</h2>
       <div class="cards-container">
         <!-- Example Wardrobe Item 1 -->
         <div class="card">
@@ -93,16 +75,8 @@
       <button class="btn">Add Clothing</button>
       <button class="btn">Create Outfit</button>
 
-      <!-- 
-        MVP Feature Placeholders:
-        1) Upload Wardrobe Photos
-        2) AI-Recommended Outfits
-        3) Virtual Try-On
-        4) Shopping Suggestions
-        5) Trend & Fashion Insights
-      -->
-
-      <!-- 1. User Uploads Wardrobe Photos -->
+      <!-- (Optional) MVP Feature Placeholders / AI expansions -->
+      <!-- 1. Upload Wardrobe Photos -->
       <section class="upload-wardrobe" style="margin-top: 2rem;">
         <h3>Upload Wardrobe Photos</h3>
         <p>Upload photos of your clothing items to let our AI help categorize them.</p>
@@ -174,6 +148,7 @@
           <li>Layering neutrals is a versatile approach.</li>
         </ul>
       </section>
+
     </div>
   </div>
 
