@@ -6,29 +6,13 @@
   <title>YourStyleWardrobe | Wardrobe Planner</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    /* Basic Modal Styles (for item details) */
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
+    /* Dark mode */
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
     }
-    .modal-content {
-      background-color: #fff;
-      padding: 1rem;
-      border-radius: 6px;
-      width: 80%;
-      max-width: 400px;
-      position: relative;
-    }
-    .close-btn {
-      position: absolute;
-      top: 8px; right: 8px;
-      cursor: pointer;
-      font-weight: bold;
+    body.dark-mode a {
+      color: #fff;
     }
 
     /* Drag & Drop styling */
@@ -36,7 +20,7 @@
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
     .drag-item {
       width: 120px;
@@ -55,9 +39,9 @@
       object-fit: cover;
     }
     .drag-canvas {
-      margin-top: 2rem;
+      margin-top: 1rem;
       width: 100%;
-      min-height: 400px;
+      min-height: 300px;
       background-color: #f0f8ff;
       border: 2px dashed #007bff;
       border-radius: 6px;
@@ -69,8 +53,8 @@
       align-items: center;
     }
     .drag-placeholder {
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       border: 2px dashed #aaa;
       display: flex;
       align-items: center;
@@ -78,285 +62,175 @@
       color: #999;
       font-size: 0.9rem;
     }
+    /* Hide AI recommended outfits by default */
+    #aiOutfits {
+      display: none;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="logo">YourStyleWardrobe</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="wardrobe.html" style="opacity: 0.8;">Wardrobe Planner</a>
-      <a href="outfit.html">Digital Closet</a>
+  <nav style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background-color: #fefefe;">
+    <div class="logo" style="font-weight: bold; font-size: 1.2rem;">YourStyleWardrobe</div>
+    <div style="display: flex; align-items: center;">
+      <a href="index.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Home</a>
+      <a href="wardrobe.html" style="margin-right: 1rem; text-decoration: none; color: #333; opacity: 0.8;">Wardrobe Planner</a>
+      <a href="outfit.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Digital Closet</a>
+      <!-- Dark Mode Toggle -->
+      <button id="theme-toggle" style="padding: 0.5rem 1rem; cursor: pointer;">Dark Mode</button>
     </div>
   </nav>
 
-  <!-- Main Container -->
-  <div class="main-container">
-    <!-- Sidebar Filters & Sort -->
-    <div class="sidebar">
-      <h3>Filters & Sort</h3>
-      <!-- Filter Checkboxes -->
-      <label>
-        <input type="checkbox" class="filter-checkbox" data-category="Clothes" />
-        Clothes
-      </label>
-      <label>
-        <input type="checkbox" class="filter-checkbox" data-category="Shoes" />
-        Shoes
-      </label>
-      <label>
-        <input type="checkbox" class="filter-checkbox" data-category="Accessories" />
-        Accessories
-      </label>
-      <hr />
-      <!-- Sort by Date -->
-      <label>
-        <input type="checkbox" id="sort-date" />
-        Sort by Date Added
-      </label>
-    </div>
+  <div style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+    <h2>Wardrobe Planner</h2>
 
-    <!-- Wardrobe Content -->
-    <div class="content">
-      <h2>My Wardrobe Planner</h2>
-      <div class="cards-container" id="wardrobeCards">
-        <!-- Example Wardrobe Item 1 -->
-        <div class="card" data-category="Clothes" data-date="2023-03-01">
-          <img src="denim-jacket.jpg" alt="Blue denim jacket" />
-          <div class="card-content">
-            <h3>Denim Jacket</h3>
-            <p>Casual, Red</p>
-          </div>
-        </div>
-        <!-- Example Wardrobe Item 2 -->
-        <div class="card" data-category="Shoes" data-date="2023-02-15">
-          <img src="leather-boots.jpg" alt="Black leather boots" />
-          <div class="card-content">
-            <h3>Leather Boots</h3>
-            <p>Formal, Black</p>
-          </div>
-        </div>
-        <!-- Example Wardrobe Item 3 -->
-        <div class="card" data-category="Clothes" data-date="2023-04-10">
-          <img src="summer-dress.jpg" alt="Red floral summer dress" />
-          <div class="card-content">
-            <h3>Summer Dress</h3>
-            <p>Casual, Red</p>
-          </div>
-        </div>
-        <!-- Another Example Wardrobe Item (Accessories) -->
-        <div class="card" data-category="Accessories" data-date="2023-01-20">
-          <img src="accessories.jpg" alt="Fancy hat" />
-          <div class="card-content">
-            <h3>Fedora Hat</h3>
-            <p>Stylish Accessory</p>
-          </div>
-        </div>
-      </div>
-      <button class="btn">Add Clothing</button>
-      <button class="btn">Create Outfit</button>
-
-      <!-- Drag & Drop Section (moved from Digital Closet) -->
-      <h3 style="margin-top: 2rem;">Build Your Outfit (Drag & Drop)</h3>
-      <p>Drag items into the canvas below to visualize different combinations.</p>
-      <div class="drag-items">
-        <div class="drag-item" draggable="true">
-          <img src="casual-denim.jpg" alt="Casual denim outfit" />
-          <p>Casual Denim</p>
-        </div>
-        <div class="drag-item" draggable="true">
-          <img src="formal-elegance.jpg" alt="Formal elegance outfit" />
-          <p>Formal Elegance</p>
-        </div>
-        <div class="drag-item" draggable="true">
-          <img src="summer-vibes.jpg" alt="Summer vibes outfit" />
-          <p>Summer Vibes</p>
-        </div>
-        <div class="drag-item" draggable="true">
-          <img src="winter-warmth.jpg" alt="Winter warmth outfit" />
-          <p>Winter Warmth</p>
-        </div>
-      </div>
-      <div class="drag-canvas" id="dragCanvas">
-        <div class="drag-placeholder">Drag items here</div>
-      </div>
-      <button class="btn" id="saveOutfitBtn" style="margin-top: 1rem;">Save Outfit</button>
-
-      <!-- MVP Feature Placeholders -->
-      <section class="upload-wardrobe" style="margin-top: 2rem;">
-        <h3>Upload Wardrobe Photos</h3>
-        <p>Upload photos of your clothing items to let our AI help categorize them.</p>
+    <!-- 1) Add Clothing Items or Upload Wardrobe Photo -->
+    <section style="margin-top: 1rem;">
+      <h3>Manage Your Wardrobe</h3>
+      <p>Add clothing items manually or upload a picture of your wardrobe.</p>
+      <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+        <input type="text" placeholder="Add Clothing Item (e.g. 'Blue Jeans')" style="padding: 0.5rem;" />
+        <button style="padding: 0.5rem 1rem;">Add Item</button>
+        <span style="margin-left: 1rem;">OR</span>
         <input type="file" multiple />
-        <button class="btn">Upload</button>
-      </section>
-      <section class="daily-outfits" style="margin-top: 2rem;">
-        <h3>AI-Recommended Outfits</h3>
-        <p>Based on weather, trends, occasion, and personal style, here are some daily suggestions:</p>
-        <div class="cards-container">
-          <div class="card">
-            <img src="office-elegance.jpg" alt="Suggested Outfit 1" />
-            <div class="card-content">
-              <h4>Office Ready</h4>
-              <p>Tailored blazer, black slacks, neutral blouse.</p>
-            </div>
-          </div>
-          <div class="card">
-            <img src="casual-denim.jpg" alt="Suggested Outfit 2" />
-            <div class="card-content">
-              <h4>Sunny Day Casual</h4>
-              <p>Light denim jacket, white tee, floral skirt.</p>
-            </div>
-          </div>
-        </div>
-        <button class="btn">Refresh Suggestions</button>
-      </section>
-      <section class="virtual-try-on" style="margin-top: 2rem;">
-        <h3>Virtual Try-On (Preview)</h3>
-        <p>See how items look together in our digital closet. (Coming Soon!)</p>
-        <button class="btn">Launch Try-On</button>
-      </section>
-      <section class="shopping-suggestions" style="margin-top: 2rem;">
-        <h3>Shopping Suggestions</h3>
-        <p>Missing a matching piece? Check out these partner recommendations:</p>
-        <div class="cards-container">
-          <div class="card">
-            <img src="accessories.jpg" alt="Suggested Accessory 1" />
-            <div class="card-content">
-              <h4>Classic Black Heels</h4>
-              <p>Perfect for your formal outfits.</p>
-              <button class="btn">Buy Now</button>
-            </div>
-          </div>
-          <div class="card">
-            <img src="accessories.jpg" alt="Suggested Accessory 2" />
-            <div class="card-content">
-              <h4>Trendy Fedora Hat</h4>
-              <p>Add flair to your casual wear.</p>
-              <button class="btn">Buy Now</button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="fashion-insights" style="margin-top: 2rem;">
-        <h3>Trend & Fashion Insights</h3>
-        <p>AI-generated style advice based on the latest trends:</p>
-        <ul style="list-style-type: disc; margin-left: 1.5rem;">
-          <li>Bright pastels are in for spring.</li>
-          <li>Wide-leg pants are making a comeback.</li>
-          <li>Layering neutrals is a versatile approach.</li>
-        </ul>
-      </section>
-    </div>
-  </div>
+        <button style="padding: 0.5rem 1rem;">Upload</button>
+      </div>
+    </section>
 
-  <!-- Modal for item details -->
-  <div id="itemModal" class="modal">
-    <div class="modal-content" id="modalContent">
-      <span class="close-btn" id="closeModal">&times;</span>
-      <h3 id="modalTitle"></h3>
-      <img id="modalImg" src="" alt="" style="width: 100%; margin-top: 1rem;" />
-      <p id="modalDesc" style="margin-top: 1rem;"></p>
-    </div>
+    <!-- 2) Choice: Manual Drag & Drop OR AI -->
+    <section style="margin-top: 2rem;">
+      <h3>Build an Outfit</h3>
+      <p>Select a method:</p>
+      <label>
+        <input type="radio" name="outfitMethod" value="manual" checked />
+        Manual Drag & Drop
+      </label>
+      <label style="margin-left: 1rem;">
+        <input type="radio" name="outfitMethod" value="ai" />
+        AI Recommended
+      </label>
+
+      <!-- Manual Drag & Drop Canvas -->
+      <div id="manualCanvas" style="margin-top: 1rem;">
+        <p>Drag items into the canvas below to create your outfit.</p>
+        <div class="drag-items">
+          <div class="drag-item" draggable="true">
+            <img src="casual-denim.jpg" alt="Casual denim outfit" />
+            <p>Casual Denim</p>
+          </div>
+          <div class="drag-item" draggable="true">
+            <img src="formal-elegance.jpg" alt="Formal elegance outfit" />
+            <p>Formal Elegance</p>
+          </div>
+          <div class="drag-item" draggable="true">
+            <img src="summer-vibes.jpg" alt="Summer vibes outfit" />
+            <p>Summer Vibes</p>
+          </div>
+          <div class="drag-item" draggable="true">
+            <img src="winter-warmth.jpg" alt="Winter warmth outfit" />
+            <p>Winter Warmth</p>
+          </div>
+        </div>
+        <div class="drag-canvas" id="dragCanvas">
+          <div class="drag-placeholder">Drag items here</div>
+        </div>
+        <button id="saveOutfitBtn" style="margin-top: 1rem; padding: 0.5rem 1rem;">Save Outfit</button>
+      </div>
+
+      <!-- AI Recommended Outfits -->
+      <div id="aiOutfits">
+        <h4>AI-Recommended Outfits</h4>
+        <p>Based on weather, trends, occasion, and personal style...</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+          <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
+            <img src="office-elegance.jpg" alt="Suggested Outfit 1" style="width: 100%; height: 200px; object-fit: cover;" />
+            <h4>Office Ready</h4>
+            <p>Tailored blazer, black slacks, neutral blouse.</p>
+          </div>
+          <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
+            <img src="casual-denim.jpg" alt="Suggested Outfit 2" style="width: 100%; height: 200px; object-fit: cover;" />
+            <h4>Sunny Day Casual</h4>
+            <p>Light denim jacket, white tee, floral skirt.</p>
+          </div>
+        </div>
+        <button style="margin-top: 1rem; padding: 0.5rem 1rem;">Refresh AI Suggestions</button>
+      </div>
+    </section>
+
+    <!-- 3) Virtual Try-On -->
+    <section style="margin-top: 2rem;">
+      <h3>Virtual Try-On (Preview)</h3>
+      <p>See how items look together in our digital closet. (Coming Soon!)</p>
+      <button style="padding: 0.5rem 1rem;">Launch Try-On</button>
+    </section>
+
+    <!-- 4) Shopping Suggestions -->
+    <section style="margin-top: 2rem;">
+      <h3>Shopping Suggestions</h3>
+      <p>Missing a matching piece? Check out these partner recommendations:</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+        <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
+          <img src="accessories.jpg" alt="Suggested Accessory 1" style="width: 100%; height: 200px; object-fit: cover;" />
+          <h4>Classic Black Heels</h4>
+          <p>Perfect for your formal outfits.</p>
+          <button style="margin-top: 0.5rem;">Buy Now</button>
+        </div>
+        <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem;">
+          <img src="accessories.jpg" alt="Suggested Accessory 2" style="width: 100%; height: 200px; object-fit: cover;" />
+          <h4>Trendy Fedora Hat</h4>
+          <p>Add flair to your casual wear.</p>
+          <button style="margin-top: 0.5rem;">Buy Now</button>
+        </div>
+      </div>
+    </section>
   </div>
 
   <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-column">
+  <footer style="background-color: #f1f1f1; padding: 2rem; margin-top: 2rem;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+      <div>
         <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Contact Us</a></li>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="#" style="text-decoration: none; color: #333;">Terms of Service</a></li>
+          <li><a href="#" style="text-decoration: none; color: #333;">Privacy Policy</a></li>
+          <li><a href="#" style="text-decoration: none; color: #333;">Contact Us</a></li>
         </ul>
       </div>
-      <div class="footer-column">
+      <div>
         <p>© 2023 YourStyleWardrobe</p>
       </div>
     </div>
   </footer>
 
   <script>
-    // ========== Filtering & Sorting ==========
-    const filterCheckboxes = document.querySelectorAll('.filter-checkbox');
-    const sortDateCheckbox = document.getElementById('sort-date');
-    const wardrobeCards = document.getElementById('wardrobeCards');
+    // Dark Mode Toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
 
-    function applyFiltersAndSort() {
-      // 1) Gather active filters
-      const activeCategories = [];
-      filterCheckboxes.forEach(cb => {
-        if (cb.checked) {
-          activeCategories.push(cb.getAttribute('data-category'));
+    // Radio buttons to toggle between manual and AI sections
+    const outfitMethodRadios = document.getElementsByName('outfitMethod');
+    const manualCanvas = document.getElementById('manualCanvas');
+    const aiOutfits = document.getElementById('aiOutfits');
+
+    outfitMethodRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.value === 'manual' && radio.checked) {
+          manualCanvas.style.display = 'block';
+          aiOutfits.style.display = 'none';
+        } else if (radio.value === 'ai' && radio.checked) {
+          manualCanvas.style.display = 'none';
+          aiOutfits.style.display = 'block';
         }
       });
-
-      // 2) Convert NodeList to array for sorting
-      let cardsArray = Array.from(wardrobeCards.querySelectorAll('.card'));
-
-      // 3) Filter by category
-      if (activeCategories.length > 0) {
-        cardsArray = cardsArray.filter(card => {
-          const cardCat = card.getAttribute('data-category');
-          return activeCategories.includes(cardCat);
-        });
-      }
-
-      // 4) Sort by date if checkbox is checked
-      if (sortDateCheckbox.checked) {
-        cardsArray.sort((a, b) => {
-          const dateA = new Date(a.getAttribute('data-date'));
-          const dateB = new Date(b.getAttribute('data-date'));
-          // Newest first
-          return dateB - dateA;
-        });
-      }
-
-      // 5) Clear existing cards and re-append
-      wardrobeCards.innerHTML = '';
-      cardsArray.forEach(card => wardrobeCards.appendChild(card));
-    }
-
-    filterCheckboxes.forEach(cb => cb.addEventListener('change', applyFiltersAndSort));
-    sortDateCheckbox.addEventListener('change', applyFiltersAndSort);
-
-    // ========== Item Details Modal ==========
-    const modal = document.getElementById('itemModal');
-    const closeModalBtn = document.getElementById('closeModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalImg = document.getElementById('modalImg');
-    const modalDesc = document.getElementById('modalDesc');
-
-    // Open modal when a card is clicked
-    wardrobeCards.addEventListener('click', (e) => {
-      const card = e.target.closest('.card');
-      if (card) {
-        const title = card.querySelector('h3').innerText;
-        const imgSrc = card.querySelector('img').src;
-        const desc = card.querySelector('p').innerText;
-
-        modalTitle.innerText = title;
-        modalImg.src = imgSrc;
-        modalDesc.innerText = desc;
-        modal.style.display = 'flex';
-      }
-    });
-    // Close modal
-    closeModalBtn.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
     });
 
-    // ========== Drag & Drop (moved from Digital Closet) ==========
+    // Drag & Drop
     const dragItems = document.querySelectorAll('.drag-item');
     const dragCanvas = document.getElementById('dragCanvas');
-
     let draggedItem = null;
 
     dragItems.forEach(item => {
