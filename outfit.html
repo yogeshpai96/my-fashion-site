@@ -3,26 +3,13 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YourStyleWardrobe | Outfit Planner</title>
+  <title>YourStyleWardrobe | Digital Closet</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    /* Override or remove any height: 200px in style.css for .outfit-tile img */
-    
-    /* Square image hack: .image-container has a 1:1 aspect ratio via padding-top: 100%. */
-    .image-container {
-      position: relative;
-      width: 100%;
-      padding-top: 100%; /* 1:1 aspect ratio */
-      overflow: hidden;
-    }
-    .image-container img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Crop/cover the square without distortion */
-    }
+    /* 
+      If you want square images, retain the .image-container hack from before.
+      For simplicity, this example uses the default rectangular style unless you add the square hack again.
+    */
   </style>
 </head>
 <body>
@@ -31,51 +18,38 @@
   <nav class="navbar">
     <div class="logo">YourStyleWardrobe</div>
     <div class="nav-links">
+      <!-- Updated order: 1) Home, 2) Wardrobe Planner, 3) Digital Closet -->
       <a href="index.html">Home</a>
-      <a href="outfit.html" style="opacity: 0.8;">Outfit Planner</a>
-      <a href="wardrobe.html">Wardrobe Organizer</a>
+      <a href="wardrobe.html">Wardrobe Planner</a>
+      <a href="outfit.html" style="opacity: 0.8;">Digital Closet</a>
     </div>
   </nav>
 
   <!-- Create Your Outfit Section -->
   <div class="main-container" style="flex-direction: column; margin: 2rem;">
-    <h2>Create Your Outfit</h2>
-    
-    <!-- Outfit Tiles -->
+    <h2>Welcome to Your Digital Closet</h2>
     <div class="outfit-tiles">
-      
       <!-- Outfit Tile 1: Casual Denim -->
       <div class="outfit-tile">
-        <div class="image-container">
-          <img src="casual-denim.jpg" alt="Casual denim outfit with jeans and T-shirt" />
-        </div>
+        <img src="casual-denim.jpg" alt="Casual denim outfit with jeans and T-shirt" />
         <h3>Casual Denim</h3>
         <p>Mix and match a classic pair of denim jeans with your favorite t-shirt for a casual look.</p>
       </div>
-      
       <!-- Outfit Tile 2: Formal Elegance -->
       <div class="outfit-tile">
-        <div class="image-container">
-          <img src="formal-elegance.jpg" alt="Formal suit and tie ensemble" />
-        </div>
+        <img src="formal-elegance.jpg" alt="Formal suit and tie ensemble" />
         <h3>Formal Elegance</h3>
         <p>A sleek suit paired with a sophisticated formal ensemble.</p>
       </div>
-      
       <!-- Outfit Tile 3: Summer Vibes -->
       <div class="outfit-tile">
-        <div class="image-container">
-          <img src="summer-vibes.jpg" alt="Summer vibes with a floral dress" />
-        </div>
+        <img src="summer-vibes.jpg" alt="Summer vibes with a floral dress" />
         <h3>Summer Vibes</h3>
         <p>Bright floral dress and sandals for a breezy, chic look.</p>
       </div>
-      
       <!-- Outfit Tile 4: Winter Warmth -->
       <div class="outfit-tile">
-        <div class="image-container">
-          <img src="winter-warmth.jpg" alt="Winter outfit with coat and scarf" />
-        </div>
+        <img src="winter-warmth.jpg" alt="Winter outfit with coat and scarf" />
         <h3>Winter Warmth</h3>
         <p>Stay cozy with a matching scarf and coat for the colder months.</p>
       </div>
