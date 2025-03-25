@@ -5,6 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>YourStyleWardrobe | Home</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Minimal dark mode styling */
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+    body.dark-mode a {
+      color: #fff;
+    }
+    body.dark-mode .card {
+      background-color: #444;
+      color: #fff;
+    }
+
+    /* Simple carousel styling */
+    .carousel-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .carousel-slide {
+      display: none; /* Hide all slides by default */
+      text-align: center;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+    .carousel-controls {
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+    .carousel-controls button {
+      margin: 0 0.25rem;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
@@ -15,6 +54,8 @@
       <a href="index.html">Home</a>
       <a href="wardrobe.html">Wardrobe Planner</a>
       <a href="outfit.html">Digital Closet</a>
+      <!-- Light/Dark Mode Toggle Button -->
+      <button id="theme-toggle" class="btn" style="margin-left: 1rem;">Toggle Dark Mode</button>
     </div>
   </nav>
 
@@ -26,71 +67,59 @@
     </p>
   </section>
 
-  <!-- Search Bar -->
-  <div class="search-bar">
-    <input type="text" placeholder="Search for outfits, brands, or styles..." />
-  </div>
-
-  <!-- Featured Outfits (Centered) -->
+  <!-- Carousel: Featured Outfits (Feature #4) -->
   <section class="featured-outfits">
     <h2 class="section-title">Featured Outfits</h2>
-    <!-- Inline style to center and limit width -->
-    <div class="cards-container" style="max-width: 900px; margin: 0 auto; justify-items: center;">
-      <!-- Card 1: Summer Vibes -->
-      <div class="card">
-        <img src="summer-vibes.jpg" alt="Summer Vibes outfit with a floral dress" />
-        <div class="card-content">
-          <h3>Summer Vibes</h3>
-          <p>A chic summer look with a floral dress and hat.</p>
-        </div>
+    <div class="carousel-container">
+      <!-- Slide 1 -->
+      <div class="carousel-slide">
+        <img src="summer-vibes.jpg" alt="Summer Vibes outfit" />
+        <h3>Summer Vibes</h3>
+        <p>A chic summer look with a floral dress and hat.</p>
       </div>
-      <!-- Card 2: Autumn Comfort -->
-      <div class="card">
-        <img src="autumn-comfort.jpg" alt="Autumn outfit featuring a cozy sweater" />
-        <div class="card-content">
-          <h3>Autumn Comfort</h3>
-          <p>A casual autumn outfit featuring a cozy sweater.</p>
-        </div>
+      <!-- Slide 2 -->
+      <div class="carousel-slide">
+        <img src="autumn-comfort.jpg" alt="Autumn Comfort outfit" />
+        <h3>Autumn Comfort</h3>
+        <p>A casual autumn outfit featuring a cozy sweater.</p>
       </div>
-      <!-- Card 3: Office Elegance -->
-      <div class="card">
-        <img src="office-elegance.jpg" alt="Office attire with a tailored suit" />
-        <div class="card-content">
-          <h3>Office Elegance</h3>
-          <p>A polished look with a tailored suit and tie.</p>
-        </div>
+      <!-- Slide 3 -->
+      <div class="carousel-slide">
+        <img src="office-elegance.jpg" alt="Office Elegance outfit" />
+        <h3>Office Elegance</h3>
+        <p>A polished look with a tailored suit and tie.</p>
       </div>
+    </div>
+    <div class="carousel-controls">
+      <button id="prevSlide">Previous</button>
+      <button id="nextSlide">Next</button>
     </div>
   </section>
 
-  <!-- Explore Categories -->
+  <!-- Explore Categories (unchanged) -->
   <section class="explore-categories">
     <h2 class="section-title">Explore Categories</h2>
     <div class="cards-container">
-      <!-- Category 1: Casual Wear -->
       <div class="card">
-        <img src="casual-wear.jpg" alt="Casual Wear category image" />
+        <img src="casual-wear.jpg" alt="Casual Wear" />
         <div class="card-content">
           <h3>Casual Wear</h3>
         </div>
       </div>
-      <!-- Category 2: Formal Wear -->
       <div class="card">
-        <img src="formal-wear.jpg" alt="Formal Wear category image" />
+        <img src="formal-wear.jpg" alt="Formal Wear" />
         <div class="card-content">
           <h3>Formal Wear</h3>
         </div>
       </div>
-      <!-- Category 3: Sportswear -->
       <div class="card">
-        <img src="sportswear.jpg" alt="Sportswear category image" />
+        <img src="sportswear.jpg" alt="Sportswear" />
         <div class="card-content">
           <h3>Sportswear</h3>
         </div>
       </div>
-      <!-- Category 4: Accessories -->
       <div class="card">
-        <img src="accessories.jpg" alt="Accessories category image" />
+        <img src="accessories.jpg" alt="Accessories" />
         <div class="card-content">
           <h3>Accessories</h3>
         </div>
@@ -98,12 +127,11 @@
     </div>
   </section>
 
-  <!-- Testimonials Section -->
+  <!-- Testimonials Section (unchanged) -->
   <section style="padding: 2rem 0; background-color: #f9f9f9;">
     <h2 style="text-align: center; color: #4A90E2; margin-bottom: 1rem;">What Our Users Say</h2>
     <p style="text-align: center; color: #555;">Real experiences from people who transformed their style habits.</p>
     <div class="cards-container">
-      <!-- Testimonial 1 -->
       <div class="card" style="max-width: 300px;">
         <div class="card-content">
           <h3>Jane K.</h3>
@@ -111,7 +139,6 @@
           <p>⭐⭐⭐⭐⭐</p>
         </div>
       </div>
-      <!-- Testimonial 2 -->
       <div class="card" style="max-width: 300px;">
         <div class="card-content">
           <h3>Michael T.</h3>
@@ -119,7 +146,6 @@
           <p>⭐⭐⭐⭐</p>
         </div>
       </div>
-      <!-- Testimonial 3 -->
       <div class="card" style="max-width: 300px;">
         <div class="card-content">
           <h3>Ana P.</h3>
@@ -127,7 +153,6 @@
           <p>⭐⭐⭐⭐⭐</p>
         </div>
       </div>
-      <!-- Testimonial 4 -->
       <div class="card" style="max-width: 300px;">
         <div class="card-content">
           <h3>David R.</h3>
@@ -138,27 +163,23 @@
     </div>
   </section>
 
-  <!-- Social Proof Section -->
+  <!-- Social Proof Section (unchanged) -->
   <section style="text-align: center; padding: 2rem 0;">
     <h2 style="color: #4A90E2; margin-bottom: 0.5rem;">Trusted by Thousands</h2>
     <p style="color: #555;">Join our community of fashion-forward, style-savvy users!</p>
     <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap;">
-      <!-- Stat 1 -->
       <div>
         <h3 style="color: #4A90E2; font-size: 1.8rem;">50,000+</h3>
         <p>Active Users</p>
       </div>
-      <!-- Stat 2 -->
       <div>
         <h3 style="color: #4A90E2; font-size: 1.8rem;">1,200+</h3>
         <p>Reviews</p>
       </div>
-      <!-- Stat 3 -->
       <div>
         <h3 style="color: #4A90E2; font-size: 1.8rem;">4.9</h3>
         <p>App Store Rating</p>
       </div>
-      <!-- Stat 4 -->
       <div>
         <h3 style="color: #4A90E2; font-size: 1.8rem;">97%</h3>
         <p>User Satisfaction</p>
@@ -166,7 +187,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer (unchanged) -->
   <footer>
     <div class="footer-container">
       <div class="footer-column">
@@ -200,5 +221,31 @@
     </div>
   </footer>
 
+  <!-- Inline JavaScript -->
+  <script>
+    // Feature #5: Light/Dark Mode Toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    // Feature #4: Basic Carousel for "Featured Outfits"
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentSlide = 0;
+    // Show the first slide
+    slides[currentSlide].style.display = 'block';
+
+    document.getElementById('prevSlide').addEventListener('click', () => {
+      slides[currentSlide].style.display = 'none';
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      slides[currentSlide].style.display = 'block';
+    });
+
+    document.getElementById('nextSlide').addEventListener('click', () => {
+      slides[currentSlide].style.display = 'none';
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].style.display = 'block';
+    });
+  </script>
 </body>
 </html>
