@@ -4,39 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>YourStyleWardrobe | Home</title>
-  <link rel="stylesheet" href="style.css" />
+  <!-- Inline Blue Theme & Dark Mode CSS -->
   <style>
-    /* Basic dark mode styling */
+    :root {
+      --primary-color: #4A90E2;
+      --secondary-color: #2D6AC2;
+      --bg-color: #F7FBFF;
+      --text-color: #333;
+      --dark-bg: #333;
+      --dark-text: #fff;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
     body.dark-mode {
-      background-color: #333;
-      color: #fff;
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
     }
-    body.dark-mode a {
-      color: #fff;
+    .logo {
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      text-decoration: none;
     }
-    body.dark-mode .card {
-      background-color: #444;
-      color: #fff;
+    body.dark-mode .logo {
+      color: #87b9f7;
     }
-
-    /* Carousel styling */
+    .btn {
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: var(--secondary-color);
+    }
+    /* Carousel */
     .carousel-container {
       position: relative;
       max-width: 900px;
       margin: 0 auto;
-      overflow: hidden;
       text-align: center;
     }
     .carousel-slide {
-      display: none; /* Hide all slides by default */
+      display: none;
       margin-bottom: 1rem;
     }
-    /* Make the image square */
     .image-container {
       position: relative;
-      width: 300px;       /* Adjust as preferred */
-      margin: 0 auto;     /* Center the container */
-      padding-top: 100%;  /* 1:1 aspect ratio */
+      width: 300px;
+      margin: 0 auto;
+      padding-top: 100%;
       overflow: hidden;
     }
     .image-container img {
@@ -47,40 +73,56 @@
     }
     .carousel-controls {
       display: flex;
-      justify-content: center;  /* Center the buttons */
-      margin-top: 1rem;
+      justify-content: center;
       gap: 1rem;
+      margin-top: 1rem;
     }
     .carousel-controls button {
       width: 40px;
       height: 40px;
-      background-color: #007bff;
+      border-radius: 4px;
+      background-color: var(--primary-color);
       color: #fff;
       border: none;
-      border-radius: 4px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s;
     }
     .carousel-controls button:hover {
-      background-color: #0056b3;
+      background-color: var(--secondary-color);
+    }
+    /* Testimonials */
+    .testimonial-card {
+      border: 1px solid #eaeaea;
+      border-radius: 6px;
+      padding: 1rem;
+      max-width: 300px;
+      margin: 0 auto;
+      background-color: #fff;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark-mode .testimonial-card {
+      background-color: #444;
+      color: #fff;
     }
   </style>
 </head>
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background-color: #fefefe;">
-    <div class="logo" style="font-weight: bold; font-size: 1.2rem;">YourStyleWardrobe</div>
-    <div class="nav-links" style="display: flex; align-items: center;">
-      <a href="index.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Home</a>
-      <a href="wardrobe.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Wardrobe Planner</a>
-      <a href="outfit.html" style="margin-right: 1rem; text-decoration: none; color: #333;">Digital Closet</a>
-      <!-- Dark Mode Toggle -->
-      <button id="theme-toggle" style="padding: 0.5rem 1rem; cursor: pointer;">Dark Mode</button>
+  <nav style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background-color: #fff;">
+    <a href="#" class="logo">YourStyleWardrobe</a>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <a href="index.html" style="text-decoration: none; color: var(--text-color);">Home</a>
+      <a href="wardrobe.html" style="text-decoration: none; color: var(--text-color);">Wardrobe Planner</a>
+      <a href="outfit.html" style="text-decoration: none; color: var(--text-color);">Digital Closet</a>
+      <button id="theme-toggle" class="btn">Dark Mode</button>
     </div>
   </nav>
 
-  <!-- Banner with Brand Tagline & Description -->
+  <!-- Banner -->
   <section style="text-align: center; padding: 2rem;">
     <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Your Outfit Companion!</h1>
     <p style="font-size: 1.1rem; color: #555;">
@@ -88,8 +130,8 @@
     </p>
   </section>
 
-  <!-- Carousel: Featured Outfits (square images) -->
-  <section class="featured-outfits">
+  <!-- Carousel: Featured Outfits -->
+  <section>
     <h2 style="text-align: center; margin-bottom: 1rem;">Featured Outfits</h2>
     <div class="carousel-container">
       <!-- Slide 1 -->
@@ -124,28 +166,29 @@
   </section>
 
   <!-- Explore Categories -->
-  <section class="explore-categories" style="padding: 2rem 0;">
+  <section style="padding: 2rem 0;">
     <h2 style="text-align: center; margin-bottom: 1rem;">Explore Categories</h2>
-    <div class="cards-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto;">
-      <div class="card" style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto;">
+      <!-- Category Cards ... -->
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
         <img src="casual-wear.jpg" alt="Casual Wear" style="width: 100%; height: 200px; object-fit: cover;" />
         <div style="padding: 1rem;">
           <h3>Casual Wear</h3>
         </div>
       </div>
-      <div class="card" style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
         <img src="formal-wear.jpg" alt="Formal Wear" style="width: 100%; height: 200px; object-fit: cover;" />
         <div style="padding: 1rem;">
           <h3>Formal Wear</h3>
         </div>
       </div>
-      <div class="card" style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
         <img src="sportswear.jpg" alt="Sportswear" style="width: 100%; height: 200px; object-fit: cover;" />
         <div style="padding: 1rem;">
           <h3>Sportswear</h3>
         </div>
       </div>
-      <div class="card" style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
+      <div style="border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden;">
         <img src="accessories.jpg" alt="Accessories" style="width: 100%; height: 200px; object-fit: cover;" />
         <div style="padding: 1rem;">
           <h3>Accessories</h3>
@@ -156,25 +199,26 @@
 
   <!-- Testimonials Section -->
   <section style="padding: 2rem 0; background-color: #f9f9f9;">
-    <h2 style="text-align: center; color: #4A90E2; margin-bottom: 1rem;">What Our Users Say</h2>
+    <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem;">What Our Users Say</h2>
     <p style="text-align: center; color: #555;">Real experiences from people who transformed their style habits.</p>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding: 2rem 0;">
-      <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem; max-width: 300px; margin: 0 auto;">
+      <!-- Testimonial Cards with .testimonial-card class to fix dark mode text -->
+      <div class="testimonial-card">
         <h3>Jane K.</h3>
         <p>"I never realized how much easier it is to plan outfits until I used YourStyleWardrobe."</p>
         <p>⭐⭐⭐⭐⭐</p>
       </div>
-      <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem; max-width: 300px; margin: 0 auto;">
+      <div class="testimonial-card">
         <h3>Michael T.</h3>
         <p>"Their digital closet is a game-changer—no more guesswork each morning!"</p>
         <p>⭐⭐⭐⭐</p>
       </div>
-      <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem; max-width: 300px; margin: 0 auto;">
+      <div class="testimonial-card">
         <h3>Ana P.</h3>
         <p>"The wardrobe planner helped me rediscover pieces I forgot I even owned."</p>
         <p>⭐⭐⭐⭐⭐</p>
       </div>
-      <div style="border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem; max-width: 300px; margin: 0 auto;">
+      <div class="testimonial-card">
         <h3>David R.</h3>
         <p>"It's not just about the clothes; it's about understanding your personal style."</p>
         <p>⭐⭐⭐⭐</p>
@@ -184,23 +228,23 @@
 
   <!-- Social Proof Section -->
   <section style="text-align: center; padding: 2rem 0;">
-    <h2 style="color: #4A90E2; margin-bottom: 0.5rem;">Trusted by Thousands</h2>
+    <h2 style="color: var(--primary-color); margin-bottom: 0.5rem;">Trusted by Thousands</h2>
     <p style="color: #555;">Join our community of fashion-forward, style-savvy users!</p>
     <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap;">
       <div>
-        <h3 style="color: #4A90E2; font-size: 1.8rem;">50,000+</h3>
+        <h3 style="color: var(--primary-color); font-size: 1.8rem;">50,000+</h3>
         <p>Active Users</p>
       </div>
       <div>
-        <h3 style="color: #4A90E2; font-size: 1.8rem;">1,200+</h3>
+        <h3 style="color: var(--primary-color); font-size: 1.8rem;">1,200+</h3>
         <p>Reviews</p>
       </div>
       <div>
-        <h3 style="color: #4A90E2; font-size: 1.8rem;">4.9</h3>
+        <h3 style="color: var(--primary-color); font-size: 1.8rem;">4.9</h3>
         <p>App Store Rating</p>
       </div>
       <div>
-        <h3 style="color: #4A90E2; font-size: 1.8rem;">97%</h3>
+        <h3 style="color: var(--primary-color); font-size: 1.8rem;">97%</h3>
         <p>User Satisfaction</p>
       </div>
     </div>
@@ -251,7 +295,6 @@
     // Basic Carousel
     const slides = document.querySelectorAll('.carousel-slide');
     let currentSlide = 0;
-    // Show the first slide
     slides[currentSlide].style.display = 'block';
 
     document.getElementById('prevSlide').addEventListener('click', () => {
