@@ -6,7 +6,7 @@
   <title>YourStyleWardrobe | Digital Closet</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    /* Square Image Hack */
+    /* Square Image Hack for items */
     .image-container {
       position: relative;
       width: 100%;
@@ -15,11 +15,46 @@
     }
     .image-container img {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
+    }
+
+    /* Drag & Drop styling */
+    .drag-items {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .drag-item {
+      width: 120px;
+      cursor: grab;
+      border: 1px solid #eaeaea;
+      border-radius: 6px;
+      overflow: hidden;
+      text-align: center;
+      user-select: none;
+    }
+    .drag-canvas {
+      margin-top: 1rem;
+      width: 100%;
+      min-height: 300px;
+      border: 2px dashed #ccc;
+      border-radius: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .drag-placeholder {
+      width: 120px;
+      height: 120px;
+      border: 1px dashed #aaa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.8rem;
     }
   </style>
 </head>
@@ -38,52 +73,57 @@
   <!-- Digital Closet Section -->
   <div class="main-container" style="flex-direction: column; margin: 2rem;">
     <h2>Welcome to Your Digital Closet</h2>
-    
-    <div class="outfit-tiles">
-      <!-- Outfit Tile 1: Casual Denim -->
-      <div class="outfit-tile">
+
+    <!-- Drag & Drop Items (Feature #6) -->
+    <div class="drag-items">
+      <!-- Drag Item 1 -->
+      <div class="drag-item" draggable="true">
         <div class="image-container">
-          <img src="casual-denim.jpg" alt="Casual denim outfit with jeans and T-shirt" />
+          <img src="casual-denim.jpg" alt="Casual denim outfit" />
         </div>
-        <h3>Casual Denim</h3>
-        <p>Mix and match a classic pair of denim jeans with your favorite t-shirt for a casual look.</p>
+        <p>Casual Denim</p>
       </div>
-      <!-- Outfit Tile 2: Formal Elegance -->
-      <div class="outfit-tile">
+      <!-- Drag Item 2 -->
+      <div class="drag-item" draggable="true">
         <div class="image-container">
-          <img src="formal-elegance.jpg" alt="Formal suit and tie ensemble" />
+          <img src="formal-elegance.jpg" alt="Formal elegance outfit" />
         </div>
-        <h3>Formal Elegance</h3>
-        <p>A sleek suit paired with a sophisticated formal ensemble.</p>
+        <p>Formal Elegance</p>
       </div>
-      <!-- Outfit Tile 3: Summer Vibes -->
-      <div class="outfit-tile">
+      <!-- Drag Item 3 -->
+      <div class="drag-item" draggable="true">
         <div class="image-container">
-          <img src="summer-vibes.jpg" alt="Summer vibes with a floral dress" />
+          <img src="summer-vibes.jpg" alt="Summer vibes outfit" />
         </div>
-        <h3>Summer Vibes</h3>
-        <p>Bright floral dress and sandals for a breezy, chic look.</p>
+        <p>Summer Vibes</p>
       </div>
-      <!-- Outfit Tile 4: Winter Warmth -->
-      <div class="outfit-tile">
+      <!-- Drag Item 4 -->
+      <div class="drag-item" draggable="true">
         <div class="image-container">
-          <img src="winter-warmth.jpg" alt="Winter outfit with coat and scarf" />
+          <img src="winter-warmth.jpg" alt="Winter warmth outfit" />
         </div>
-        <h3>Winter Warmth</h3>
-        <p>Stay cozy with a matching scarf and coat for the colder months.</p>
+        <p>Winter Warmth</p>
       </div>
     </div>
 
-    <button class="btn">Save Outfit</button>
+    <div class="drag-canvas" id="dragCanvas">
+      <div class="drag-placeholder">Drag items here</div>
+    </div>
 
-    <!-- Notes Section -->
-    <div class="note-section">
+    <button class="btn" id="saveOutfitBtn">Save Outfit</button>
+
+    <!-- Notes Section (Feature #2: Local Storage) -->
+    <div class="note-section" style="margin-top: 2rem;">
       <h4>Add Notes</h4>
-      <textarea placeholder="Add any personal notes here..."></textarea>
+      <textarea id="notesInput" placeholder="Add any personal notes here..." style="width:100%; min-height:80px;"></textarea>
+      <div style="margin-top: 0.5rem;">
+        <button class="btn" id="saveNotesBtn">Save Notes</button>
+        <button class="btn" id="loadNotesBtn">Load Notes</button>
+      </div>
     </div>
 
-    <!-- Styling Tips -->
-    <div class="styling-tips">
+    <!-- Styling Tips (unchanged) -->
+    <div class="styling-tips" style="margin-top: 2rem;">
       <h4>Styling Tips</h4>
       <ul>
         <li>Layer your pieces to add more dynamic looks.</li>
@@ -93,7 +133,7 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Footer (unchanged) -->
   <footer>
     <div class="footer-container">
       <div class="footer-column">
@@ -118,5 +158,57 @@
     </div>
   </footer>
 
+  <script>
+    // Feature #6: Basic Drag-and-Drop
+    const dragItems = document.querySelectorAll('.drag-item');
+    const dragCanvas = document.getElementById('dragCanvas');
+
+    let draggedItem = null;
+
+    dragItems.forEach(item => {
+      item.addEventListener('dragstart', e => {
+        draggedItem = item;
+        e.dataTransfer.effectAllowed = 'move';
+      });
+      item.addEventListener('dragend', () => {
+        draggedItem = null;
+      });
+    });
+
+    dragCanvas.addEventListener('dragover', e => {
+      e.preventDefault();
+    });
+    dragCanvas.addEventListener('drop', () => {
+      if (draggedItem) {
+        dragCanvas.appendChild(draggedItem);
+      }
+    });
+
+    // "Save Outfit" button (simple placeholder)
+    const saveOutfitBtn = document.getElementById('saveOutfitBtn');
+    saveOutfitBtn.addEventListener('click', () => {
+      alert('Outfit saved (this is a placeholder—no backend yet).');
+    });
+
+    // Feature #2: Local Storage for Notes
+    const notesInput = document.getElementById('notesInput');
+    const saveNotesBtn = document.getElementById('saveNotesBtn');
+    const loadNotesBtn = document.getElementById('loadNotesBtn');
+
+    saveNotesBtn.addEventListener('click', () => {
+      localStorage.setItem('digitalClosetNotes', notesInput.value);
+      alert('Notes saved locally!');
+    });
+
+    loadNotesBtn.addEventListener('click', () => {
+      const savedNotes = localStorage.getItem('digitalClosetNotes');
+      if (savedNotes) {
+        notesInput.value = savedNotes;
+        alert('Notes loaded from local storage.');
+      } else {
+        alert('No saved notes found.');
+      }
+    });
+  </script>
 </body>
 </html>
